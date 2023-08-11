@@ -1,5 +1,5 @@
 import { menuItem } from "@/@types/menu.d";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 
 type MenuProps = {
@@ -32,21 +32,21 @@ export const Menu = (props: MenuProps) => {
         return (
             <Nav className={props.alignment}>
                 {menu.map((item: menuItem, index: number) => {
-                    if (item.items?.length > 0) {
-                        return (
-                            <NavDropdown key={index} title={item.title} id="basic-nav-dropdown">
-                                {item.items.map((item: menuItem, index: number) => {
-                                    return <Nav.Link href={item.slug}>{item.title}</Nav.Link>;
-                                })}
-                            </NavDropdown>
-                        );
-                    } else {
-                        return (
-                            <Nav.Link key={index} href={item.slug}>
-                                {item.title}
-                            </Nav.Link>
-                        );
-                    }
+                    return (
+                        <Fragment key={index}>
+                            {item.items?.length > 0 ? (
+                                <NavDropdown title={item.title} id="basic-nav-dropdown">
+                                    {item.items.map((item: menuItem, index: number) => {
+                                        return <Nav.Link href={item.slug}>{item.title}</Nav.Link>;
+                                    })}
+                                </NavDropdown>
+                            ) : (
+                                <Nav.Link key={index} href={item.slug}>
+                                    {item.title}
+                                </Nav.Link>
+                            )}
+                        </Fragment>
+                    );
                 })}
             </Nav>
         );
