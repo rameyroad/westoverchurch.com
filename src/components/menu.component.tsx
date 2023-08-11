@@ -35,9 +35,13 @@ export const Menu = (props: MenuProps) => {
                     return (
                         <Fragment key={index}>
                             {item.items?.length > 0 ? (
-                                <NavDropdown title={item.title} id="basic-nav-dropdown">
+                                <NavDropdown key={index} title={item.title} id="basic-nav-dropdown">
                                     {item.items.map((item: menuItem, index: number) => {
-                                        return <Nav.Link href={item.slug}>{item.title}</Nav.Link>;
+                                        return (
+                                            <Nav.Link key={index} href={item.slug}>
+                                                {item.title}
+                                            </Nav.Link>
+                                        );
                                     })}
                                 </NavDropdown>
                             ) : (
