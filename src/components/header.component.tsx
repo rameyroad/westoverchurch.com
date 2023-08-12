@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import { Menu } from "./menu.component";
 
 export default function Header() {
@@ -13,8 +14,13 @@ export default function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Menu title="mainMenu" alignment="me-auto" />
-                    <Navbar.Brand href="#home" className=" d-none d-lg-block">
-                        <img src="https://www.westoverchurch.com/views/site/images/footer_logo.png" alt="Westover Church" />
+                    <Navbar.Brand href="#home" className="d-none d-lg-block">
+                        <Image
+                            src="https://rameyroadeus01.blob.core.windows.net/westover-content/42bb860e-8200-415d-9fb8-605e274488ba-westover_icon.png"
+                            alt="Westover Church"
+                            width="50"
+                            height="52"
+                        />
                     </Navbar.Brand>
                     <Menu title="leftMenu" alignment="ms-auto" />
                 </Navbar.Collapse>

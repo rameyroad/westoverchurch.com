@@ -19,6 +19,16 @@ module.exports = (phase) => {
     // next.config.js object
     return {
         output: 'standalone',
+        images: {
+            remotePatterns: [
+                {
+                    protocol: 'https',
+                    hostname: 'rameyroadeus01.blob.core.windows.net',
+                    port: '',
+                    pathname: '/westover-content/**',
+                },
+            ],
+        },
         env,
     }
 }
