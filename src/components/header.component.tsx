@@ -22,7 +22,7 @@ export default function Header() {
                             height="52"
                         />
                     </Navbar.Brand>
-                    <Menu title="leftMenu" alignment="ms-auto" />
+                    <Menu title="rightMenu" alignment="ms-auto" />
                 </Navbar.Collapse>
             </Container>
         </Navbar>

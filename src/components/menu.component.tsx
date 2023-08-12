@@ -7,6 +7,35 @@ type MenuProps = {
     alignment: string;
 };
 
+type DropdownProps = {
+    key: number;
+    item: menuItem;
+};
+
+const DropdownItem = (props: DropdownProps) => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsOpen(false);
+    };
+
+    return (
+        <NavDropdown key={props.key} title={props.item.title}>
+            {props.item.items.map((item: menuItem, index: number) => {
+                return (
+                    <Nav.Link key={index} href={item.targetUri} target={item.target ?? "_top"}>
+                        {item.title}
+                    </Nav.Link>
+                );
+            })}
+        </NavDropdown>
+    );
+};
+
 export const Menu = (props: MenuProps) => {
     const [menu, setMenu] = useState<Array<menuItem> | null>(null);
 
@@ -20,8 +49,10 @@ export const Menu = (props: MenuProps) => {
             headers: myHeaders,
             next: { revalidate: 300 },
         });
-        let m = await resp.json();
-        setMenu(m);
+        if (resp.ok) {
+            let m = await resp.json();
+            setMenu(m);
+        }
     };
 
     useEffect(() => {
@@ -35,17 +66,9 @@ export const Menu = (props: MenuProps) => {
                     return (
                         <Fragment key={index}>
                             {item.items?.length > 0 ? (
-                                <NavDropdown key={index} title={item.title} id="basic-nav-dropdown">
-                                    {item.items.map((item: menuItem, index: number) => {
-                                        return (
-                                            <Nav.Link key={index} href={item.slug}>
-                                                {item.title}
-                                            </Nav.Link>
-                                        );
-                                    })}
-                                </NavDropdown>
+                                <DropdownItem key={index} item={item} />
                             ) : (
-                                <Nav.Link key={index} href={item.slug}>
+                                <Nav.Link key={index} href={item.targetUri} target={item.target ?? "_top"}>
                                     {item.title}
                                 </Nav.Link>
                             )}

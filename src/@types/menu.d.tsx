@@ -3,6 +3,7 @@ export type menuItem = {
     title: string;
     description: string;
     slug: string;
+    targetUri: string;
     target: string;
     items: Array<menuItem>;
 };
