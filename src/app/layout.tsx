@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <Head>
-                <link rel="apple-touch-icon-precomposed" href="https://www.westoverchurch.com/views/site/images/ipad_icon.png"></link>
+                <link rel="apple-touch-icon-precomposed" href="https://www.westoverchurch.com/views/site/images/ipad_icon.png">
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />

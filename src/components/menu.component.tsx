@@ -27,7 +27,7 @@ const DropdownItem = (props: DropdownProps) => {
         <NavDropdown key={props.key} title={props.item.title}>
             {props.item.items.map((item: menuItem, index: number) => {
                 return (
-                    <Nav.Link key={index} href={item.targetUri} target={item.target ?? "_top"}>
+                    <Nav.Link key={index} href={item.href} target={item.target ?? "_top"}>
                         {item.title}
                     </Nav.Link>
                 );
@@ -68,7 +68,7 @@ export const Menu = (props: MenuProps) => {
                             {item.items?.length > 0 ? (
                                 <DropdownItem key={index} item={item} />
                             ) : (
-                                <Nav.Link key={index} href={item.targetUri} target={item.target ?? "_top"}>
+                                <Nav.Link key={index} href={item.href} target={item.target ?? "_top"}>
                                     {item.title}
                                 </Nav.Link>
                             )}
