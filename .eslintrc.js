@@ -29,12 +29,12 @@ module.exports = {
   ],
   'rules': {
     // 'indent': [
-    //   'error',
-    //   2,
+    //   'warn',
+    //   4,
     //   { 'SwitchCase': 1 },
     // ],
     // 'linebreak-style': [
-    //   'error',
+    //   'warn',
     //   'unix',
     // ],
     'quotes': [

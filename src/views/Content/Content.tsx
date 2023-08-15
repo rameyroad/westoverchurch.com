@@ -23,7 +23,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
     const getContent = async () => {
         setIsLoading(true);
         try {
-            let pc = await getPageByPermalink(pageName, 'MainSite');
+            const pc = await getPageByPermalink(pageName, 'MainSite');
             console.log('pc', pc);
             if (pc == null) {
                 router.push('/not-found');

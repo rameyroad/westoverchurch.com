@@ -29,7 +29,7 @@ export const ColumnBlock: React.FC<BlockProps> = ({ block }) => {
         }
     };
 
-    let numColumns = block.items;
+    const numColumns = block.items;
 
     return (
         <div className="block column-block">

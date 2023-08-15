@@ -81,7 +81,7 @@ export interface Media {
     lastModified: Date;
 }
 
-export interface Properties {}
+// export interface Properties {}
 
 export interface Version {
     id: string;
@@ -92,7 +92,7 @@ export interface Version {
 }
 
 export enum FileExtension {
-    Jpg = ".jpg",
+    Jpg = '.jpg',
 }
 
 export interface Aspect {
