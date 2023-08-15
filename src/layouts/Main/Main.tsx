@@ -11,7 +11,6 @@ import TopNav from 'components/TopNav';
 
 import { Topbar, Sidebar, Footer } from './components';
 
-import pages from '../navigation';
 import { getContent } from 'services/getContent';
 
 interface Props {
@@ -47,10 +46,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
   });
 
   const getMenus = async () => {
-    let p = await getContent('mainMenu');
+    const p = await getContent('mainMenu');
     setPrimaryMenu(p);
 
-    let s = await getContent('rightMenu');
+    const s = await getContent('rightMenu');
     setSecondaryMenu(s);
 
     const all = [...p, ...s];

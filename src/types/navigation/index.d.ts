@@ -4,5 +4,5 @@ interface PageItem {
   id?: string | number;
   href: string;
   target?: string;
-  items: PageItem[];
+  items?: PageItem[];
 }

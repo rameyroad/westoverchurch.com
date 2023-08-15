@@ -18,11 +18,7 @@ const IndexView = (): JSX.Element => {
             <Link underline="hover" color="inherit" href="/blocks">
               Components
             </Link>
-            <Link
-              underline="hover"
-              color="inherit"
-              href="/blocks#js--blocks__index-section--application-ui"
-            >
+            <Link underline="hover" color="inherit" href="/blocks#js--blocks__index-section--application-ui">
               Application UI
             </Link>
             <Typography color="text.primary">Stats</Typography>
@@ -33,9 +29,7 @@ const IndexView = (): JSX.Element => {
             <Typography variant={'h4'} fontWeight={700}>
               Stats
             </Typography>
-            <Typography>
-              Displays usage related data, statistics or limits.
-            </Typography>
+            <Typography>Displays usage related data, statistics or limits.</Typography>
           </Box>
         </Container>
         <ResizableFrame
@@ -53,9 +47,7 @@ const IndexView = (): JSX.Element => {
         <ResizableFrame
           src={'/blocks/app-stats/with-shared-borders'}
           title={'With shared borders'}
-          path={
-            './src/blocks/appStats/WithSharedBorders/WithSharedBorders.js|ts'
-          }
+          path={'./src/blocks/appStats/WithSharedBorders/WithSharedBorders.js|ts'}
           iframeStyles={{ minHeight: 293 }}
         />
       </Box>
