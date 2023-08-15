@@ -20,6 +20,7 @@ module.exports = (phase) => {
     return {
         output: 'standalone',
         images: {
+            domains: ['assets.maccarianagency.com'],
             remotePatterns: [
                 {
                     protocol: 'https',
