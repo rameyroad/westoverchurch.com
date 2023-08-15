@@ -15,6 +15,8 @@ export const getContent = async (contentId: string) => {
 };
 
 export const getPageByPermalink = async (permalink: string, site: string) => {
+    if (permalink == null) return null;
+
     const myHeaders = new Headers({
         Authorization: 'Basic R2xvYmFsV2ViVXNlcjo3NENGRDFEQkFBRTk0Mzk4QjY1QUE0RjUzNzYzNUIxMw==',
     });
@@ -24,8 +26,12 @@ export const getPageByPermalink = async (permalink: string, site: string) => {
         next: { revalidate: 300 },
     });
     if (resp.ok) {
-        const m = await resp.json();
-        return m;
+        try {
+            const m = await resp.json();
+            return m;
+        } catch (err) {
+            console.log('error', err);
+        }
     }
     return null;
 };
