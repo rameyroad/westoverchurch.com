@@ -81,7 +81,9 @@ export interface Media {
     lastModified: Date;
 }
 
-// export interface Properties {}
+export interface Properties {
+    id: string;
+}
 
 export interface Version {
     id: string;
