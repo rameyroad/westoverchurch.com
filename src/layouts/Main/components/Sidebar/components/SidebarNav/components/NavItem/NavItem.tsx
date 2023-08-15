@@ -26,7 +26,12 @@ const NavItem = ({ title, items }: Props): JSX.Element => {
   return (
     <Box>
       <Accordion disableGutters elevation={0} sx={{ backgroundColor: 'transparent' }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header" sx={{ padding: 0 }}>
+        <AccordionSummary
+          expandIcon={items?.length > 0 && <ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+          sx={{ padding: 0 }}
+        >
           <Typography fontWeight={hasActiveLink() ? 600 : 400} color={hasActiveLink() ? 'primary' : 'text.primary'}>
             {title}
           </Typography>

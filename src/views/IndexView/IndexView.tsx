@@ -3,30 +3,23 @@ import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-  GetStarted,
-  Features,
-  QuickStart,
-  Services,
-  Benefits,
-  Hero,
-} from './components';
+import { GetStarted, Features, QuickStart, Services, Benefits, Hero } from './components';
 
 const IndexView = (): JSX.Element => {
   const theme = useTheme();
   return (
     <Box sx={{ overflowX: 'hidden' }}>
       <Main bgcolor={'background.paper'}>
-        <Hero />
+        {/* <Hero />
         <Container>
           <Services />
         </Container>
         <Box
           sx={{
-            backgroundImage: `linear-gradient(to bottom, ${alpha(
-              theme.palette.background.paper,
-              0,
-            )}, ${alpha(theme.palette.alternate.main, 1)} 100%)`,
+            backgroundImage: `linear-gradient(to bottom, ${alpha(theme.palette.background.paper, 0)}, ${alpha(
+              theme.palette.alternate.main,
+              1,
+            )} 100%)`,
             backgroundRepeat: 'repeat-x',
             position: 'relative',
           }}
@@ -52,15 +45,12 @@ const IndexView = (): JSX.Element => {
               marginBottom: theme.spacing(-1),
             }}
           >
-            <path
-              fill={theme.palette.background.paper}
-              d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-            ></path>
+            <path fill={theme.palette.background.paper} d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
           </Box>
         </Box>
         <Container>
           <GetStarted />
-        </Container>
+        </Container> */}
       </Main>
     </Box>
   );
