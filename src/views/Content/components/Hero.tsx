@@ -6,11 +6,11 @@ import Typography from '@mui/material/Typography';
 import Container from 'components/Container';
 import { DynamicPage } from 'types/dynamicPage';
 
-export interface HeroProps {
+interface Props {
     page: DynamicPage;
 }
 
-const Hero = ({ page }): JSX.Element => {
+const Hero = ({ page }: Props): JSX.Element => {
     useEffect(() => {
         const jarallaxInit = async () => {
             const jarallaxElems = document.querySelectorAll('.jarallax');
