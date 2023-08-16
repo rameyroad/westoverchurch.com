@@ -1,8 +1,8 @@
 import React from 'react';
-import IndexView from 'views/IndexView';
+import Home from 'views/Home';
 
 const IndexPage = (): JSX.Element => {
-  return <IndexView />;
+    return <Home />;
 };
 
 export default IndexPage;
