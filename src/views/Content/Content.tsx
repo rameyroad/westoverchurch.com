@@ -90,7 +90,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
     };
 
     return (
-        <Main colorInvert={true}>
+        <Main>
             <Hero page={activePage} />
             <Container>{renderBlockContent()}</Container>
         </Main>

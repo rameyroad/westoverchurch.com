@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { Box, Typography } from '@mui/material';
 
 import Container from 'components/Container';
 import { DynamicPage } from 'types/dynamicPage';
@@ -34,7 +33,6 @@ export const Hero = ({ page }: Props): JSX.Element => {
             minHeight={{ xs: 200, sm: 300, md: 400 }}
             display={'flex'}
             alignItems={'center'}
-            marginTop={-13}
             paddingTop={13}
             id="agency__portfolio-item--js-scroll"
         >
