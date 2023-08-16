@@ -3,10 +3,14 @@ import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
-import { Typography } from '@mui/material';
-import { getPageByPermalink } from 'services/contentApi';
+import Main from 'layouts/Main';
+import Container from 'components/Container';
+
 import { Block, DynamicPage } from 'types/dynamicPage';
+import { getPageByPermalink } from 'services/contentApi';
 import { HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock } from './components';
+import Hero from './components/Hero';
+import { Typography } from '@mui/material';
 
 interface Props {
     pageName: string;
@@ -16,7 +20,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
     const theme = useTheme();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [pageContent, setPageContent] = useState<DynamicPage | null>(null);
+    const [activePage, setActivePage] = useState<DynamicPage | null>(null);
 
     const router = useRouter();
 
@@ -28,7 +32,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
             if (pc == null) {
                 router.push('/not-found');
             } else {
-                setPageContent(pc);
+                setActivePage(pc);
             }
         } catch (error) {
             console.log(error);
@@ -45,10 +49,10 @@ const Content = ({ pageName }: Props): JSX.Element => {
     }, [pageName]);
 
     useEffect(() => {
-        if (pageContent) {
-            console.log('pageContent', pageContent);
+        if (activePage) {
+            console.log('pageContent', activePage);
         }
-    }, [pageContent]);
+    }, [activePage]);
 
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
@@ -70,23 +74,27 @@ const Content = ({ pageName }: Props): JSX.Element => {
     };
 
     const renderBlockContent = () => {
-        if (pageContent && pageContent.blocks) {
+        if (activePage && activePage.blocks) {
             return (
-                <Fragment>
-                    {pageContent.blocks.map((block: Block, index: number) => {
-                        return <Fragment key={index}>{renderBlock(block, index)}</Fragment>;
+                <Box>
+                    {activePage.blocks.map((block: Block, index: number) => {
+                        return (
+                            <Typography component={'p'} key={index}>
+                                {renderBlock(block, index)}
+                            </Typography>
+                        );
                     })}
-                </Fragment>
+                </Box>
             );
         }
         return <Fragment />;
     };
 
     return (
-        <Box>
-            <Typography variant="h4">{pageContent?.title}</Typography>
-            <Box>{renderBlockContent()}</Box>
-        </Box>
+        <Main colorInvert={true}>
+            <Hero page={activePage} />
+            <Container>{renderBlockContent()}</Container>
+        </Main>
     );
 };
 

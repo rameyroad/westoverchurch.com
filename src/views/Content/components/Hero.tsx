@@ -4,8 +4,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import Container from 'components/Container';
+import { DynamicPage } from 'types/dynamicPage';
 
-const Hero = (): JSX.Element => {
+export interface HeroProps {
+    page: DynamicPage;
+}
+
+const Hero = ({ page }): JSX.Element => {
     useEffect(() => {
         const jarallaxInit = async () => {
             const jarallaxElems = document.querySelectorAll('.jarallax');
@@ -26,7 +31,7 @@ const Hero = (): JSX.Element => {
             data-jarallax
             data-speed="0.2"
             position={'relative'}
-            minHeight={{ xs: 400, sm: 500, md: 600 }}
+            minHeight={{ xs: 200, sm: 300, md: 400 }}
             display={'flex'}
             alignItems={'center'}
             marginTop={-13}
@@ -48,7 +53,7 @@ const Hero = (): JSX.Element => {
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center center',
-                    backgroundImage: 'url(https://assets.maccarianagency.com/backgrounds/img52.jpg)',
+                    backgroundImage: `url('${page?.primaryImage?.media?.publicUrl}')`,
                 }}
             />
             <Box
@@ -75,18 +80,20 @@ const Hero = (): JSX.Element => {
                             textTransform: 'uppercase',
                         }}
                     >
-                        About us
+                        {page?.title}
                     </Typography>
-                    <Typography
-                        variant="h6"
-                        component="p"
-                        color="text.primary"
-                        sx={{
-                            color: 'common.white',
-                        }}
-                    >
-                        We are founded by a leading academic and researcher in the field of Industrial Systems Engineering.
-                    </Typography>
+                    {page?.excerpt && (
+                        <Typography
+                            variant="h6"
+                            component="p"
+                            color="text.primary"
+                            sx={{
+                                color: 'common.white',
+                            }}
+                        >
+                            {page.excerpt}
+                        </Typography>
+                    )}
                 </Box>
             </Container>
         </Box>
