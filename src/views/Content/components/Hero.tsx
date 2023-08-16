@@ -10,7 +10,7 @@ interface Props {
     page: DynamicPage;
 }
 
-const Hero = ({ page }: Props): JSX.Element => {
+export const Hero = ({ page }: Props): JSX.Element => {
     useEffect(() => {
         const jarallaxInit = async () => {
             const jarallaxElems = document.querySelectorAll('.jarallax');
@@ -99,5 +99,3 @@ const Hero = ({ page }: Props): JSX.Element => {
         </Box>
     );
 };
-
-export default Hero;

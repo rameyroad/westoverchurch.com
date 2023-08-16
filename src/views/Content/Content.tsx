@@ -8,8 +8,7 @@ import Container from 'components/Container';
 
 import { Block, DynamicPage } from 'types/dynamicPage';
 import { getPageByPermalink } from 'services/contentApi';
-import { HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock } from './components';
-import Hero from './components/Hero';
+import { Hero, HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock } from './components';
 import { Typography } from '@mui/material';
 
 interface Props {
