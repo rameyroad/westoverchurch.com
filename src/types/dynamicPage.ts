@@ -62,6 +62,48 @@ export interface DynamicPage {
     lastModified: Date;
 }
 
+export interface DynamicPost {
+    regions: Regions;
+    blogId: string;
+    category: Category;
+    tags: any[];
+    slug: string;
+    permalink: string;
+    metaTitle: null;
+    metaKeywords: null;
+    metaDescription: null;
+    metaIndex: boolean;
+    metaFollow: boolean;
+    metaPriority: number;
+    ogTitle: null;
+    ogDescription: null;
+    ogImage: Image;
+    primaryImage: Image;
+    excerpt: null;
+    route: null;
+    redirectUrl: null;
+    redirectType: number;
+    blocks: any[];
+    enableComments: boolean;
+    closeCommentsAfterDays: number;
+    commentCount: number;
+    isCommentsOpen: boolean;
+    published: Date;
+    isPublished: boolean;
+    id: string;
+    typeId: string;
+    title: string;
+    permissions: any[];
+    created: Date;
+    lastModified: Date;
+}
+export interface Category {
+    id: string;
+    title: string;
+    slug: string;
+    type: number;
+}
+
 export interface Media {
     properties: Properties;
     versions: Version[];
@@ -113,4 +155,16 @@ export interface Image {
 
 export interface Regions {
     $type: string;
+    AuthorInfo: AuthorInfo;
+}
+
+export interface AuthorInfo {
+    $type: string;
+    Name: Name;
+    Title: Name;
+}
+
+export interface Name {
+    $type: string;
+    value: string;
 }

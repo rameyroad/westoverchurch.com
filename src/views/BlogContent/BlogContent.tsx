@@ -6,31 +6,32 @@ import { useTheme } from '@mui/material/styles';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 
-import { Block, DynamicPage } from 'types/dynamicPage';
-import { getPageBySlug } from 'services/contentApi';
-import { Hero, HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock } from './components';
+import { Block, DynamicPost } from 'types/dynamicPage';
+import { getBlogPostBySlug } from 'services/contentApi';
 import { Typography } from '@mui/material';
+import { ColumnBlock, HtmlBlock, ImageBlock, ImageGalleryBlock } from 'views/Content/components';
+import { Hero } from './components/Hero';
 
 interface Props {
-    pageName: string;
+    postName: string;
 }
 
-const Content = ({ pageName }: Props): JSX.Element => {
+const BlogContent = ({ postName }: Props): JSX.Element => {
     const theme = useTheme();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [activePage, setActivePage] = useState<DynamicPage | null>(null);
+    const [acivePost, setActivePost] = useState<DynamicPost | null>(null);
 
     const router = useRouter();
 
     const getContent = async () => {
         setIsLoading(true);
         try {
-            const pc = await getPageBySlug(pageName, 'MainSite');
+            const pc = await getBlogPostBySlug(postName);
             if (pc == null) {
                 router.push('/not-found');
             } else {
-                setActivePage(pc);
+                setActivePost(pc);
             }
         } catch (error) {
             console.log(error);
@@ -41,16 +42,16 @@ const Content = ({ pageName }: Props): JSX.Element => {
     };
 
     useEffect(() => {
-        if (pageName) {
+        if (postName) {
             getContent();
         }
-    }, [pageName]);
+    }, [postName]);
 
     useEffect(() => {
-        if (activePage) {
-            console.log('pageContent', activePage);
+        if (acivePost) {
+            console.log('pageContent', acivePost);
         }
-    }, [activePage]);
+    }, [acivePost]);
 
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
@@ -72,10 +73,10 @@ const Content = ({ pageName }: Props): JSX.Element => {
     };
 
     const renderBlockContent = () => {
-        if (activePage && activePage.blocks) {
+        if (acivePost && acivePost.blocks) {
             return (
                 <Box>
-                    {activePage.blocks.map((block: Block, index: number) => {
+                    {acivePost.blocks.map((block: Block, index: number) => {
                         return (
                             <Typography component={'p'} key={index}>
                                 {renderBlock(block, index)}
@@ -90,10 +91,10 @@ const Content = ({ pageName }: Props): JSX.Element => {
 
     return (
         <Main>
-            <Hero post={activePage} />
+            <Hero post={acivePost} />
             <Container>{renderBlockContent()}</Container>
         </Main>
     );
 };
 
-export default Content;
+export default BlogContent;
