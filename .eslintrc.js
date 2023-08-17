@@ -28,17 +28,17 @@ module.exports = {
     'react',
   ],
   'rules': {
-    // 'indent': [
-    //   'warn',
-    //   4,
-    //   { 'SwitchCase': 1 },
-    // ],
-    // 'linebreak-style': [
-    //   'warn',
-    //   'unix',
-    // ],
+    'indent': [
+      'warn',
+      4,
+      { 'SwitchCase': 1 },
+    ],
+    'linebreak-style': [
+      'warn',
+      'unix',
+    ],
     'quotes': [
-      'error',
+      'warn',
       'single',
     ],
     'semi': [
