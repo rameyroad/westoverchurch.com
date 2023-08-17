@@ -3,7 +3,7 @@ import { alpha } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 
 import Container from 'components/Container';
-import { DynamicPage, DynamicPost } from 'types/dynamicPage';
+import { DynamicPost } from 'types/dynamicPage';
 
 interface Props {
     post: DynamicPost;
