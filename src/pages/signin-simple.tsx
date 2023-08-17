@@ -2,7 +2,7 @@ import React from 'react';
 import SigninSimple from 'views/SigninSimple';
 
 const SigninSimplePage = (): JSX.Element => {
-  return <SigninSimple />;
+    return <SigninSimple />;
 };
 
 export default SigninSimplePage;

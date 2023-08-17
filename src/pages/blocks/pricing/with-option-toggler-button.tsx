@@ -2,7 +2,7 @@ import React from 'react';
 import WithOptionTogglerButton from 'blocks/pricing/WithOptionTogglerButton';
 
 const WithOptionTogglerButtonPage = (): JSX.Element => {
-  return <WithOptionTogglerButton />;
+    return <WithOptionTogglerButton />;
 };
 
 export default WithOptionTogglerButtonPage;

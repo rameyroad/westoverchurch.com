@@ -2,7 +2,7 @@ import React from 'react';
 import WithDarkBackground from 'blocks/newsletters/WithDarkBackground';
 
 const WithDarkBackgroundPage = (): JSX.Element => {
-  return <WithDarkBackground />;
+    return <WithDarkBackground />;
 };
 
 export default WithDarkBackgroundPage;

@@ -2,7 +2,7 @@ import React from 'react';
 import WithCountUpNumbersAndMap from 'blocks/stats/WithCountUpNumbersAndMap';
 
 const WithCountUpNumbersAndMapPage = (): JSX.Element => {
-  return <WithCountUpNumbersAndMap />;
+    return <WithCountUpNumbersAndMap />;
 };
 
 export default WithCountUpNumbersAndMapPage;

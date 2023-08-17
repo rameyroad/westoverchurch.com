@@ -10,57 +10,48 @@ import Container from 'components/Container';
 import { Topbar, Sidebar } from './components';
 
 const WithCollapsibleMenuItems = (): JSX.Element => {
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
-  });
+    const theme = useTheme();
+    const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+        defaultMatches: true,
+    });
 
-  const [openSidebar, setOpenSidebar] = useState(false);
+    const [openSidebar, setOpenSidebar] = useState(false);
 
-  const handleSidebarOpen = () => {
-    setOpenSidebar(true);
-  };
+    const handleSidebarOpen = () => {
+        setOpenSidebar(true);
+    };
 
-  const handleSidebarClose = () => {
-    setOpenSidebar(false);
-  };
+    const handleSidebarClose = () => {
+        setOpenSidebar(false);
+    };
 
-  const open = isMd ? false : openSidebar;
+    const open = isMd ? false : openSidebar;
 
-  return (
-    <Container>
-      <Box marginBottom={4}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" href="#">
-            Home
-          </Link>
-          <Link underline="hover" color="inherit" href="#">
-            T-shirts
-          </Link>
-          <Typography color="text.primary">Classy sweatshirt</Typography>
-        </Breadcrumbs>
-        <Typography variant={'h4'} fontWeight={700} marginTop={2}>
-          Classy sweatshirt
-        </Typography>
-      </Box>
-      <Box display={'flex'}>
-        <Sidebar
-          onClose={handleSidebarClose}
-          open={open}
-          variant={isMd ? 'permanent' : 'temporary'}
-        />
-        <Box marginLeft={{ xs: 0, md: 4 }} width={1}>
-          <Topbar onSidebarOpen={handleSidebarOpen} />
-          <Box
-            borderRadius={2}
-            border={`4px dashed ${theme.palette.divider}`}
-            height={600}
-            marginTop={4}
-          />
-        </Box>
-      </Box>
-    </Container>
-  );
+    return (
+        <Container>
+            <Box marginBottom={4}>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" color="inherit" href="#">
+                        Home
+                    </Link>
+                    <Link underline="hover" color="inherit" href="#">
+                        T-shirts
+                    </Link>
+                    <Typography color="text.primary">Classy sweatshirt</Typography>
+                </Breadcrumbs>
+                <Typography variant={'h4'} fontWeight={700} marginTop={2}>
+                    Classy sweatshirt
+                </Typography>
+            </Box>
+            <Box display={'flex'}>
+                <Sidebar onClose={handleSidebarClose} open={open} variant={isMd ? 'permanent' : 'temporary'} />
+                <Box marginLeft={{ xs: 0, md: 4 }} width={1}>
+                    <Topbar onSidebarOpen={handleSidebarOpen} />
+                    <Box borderRadius={2} border={`4px dashed ${theme.palette.divider}`} height={600} marginTop={4} />
+                </Box>
+            </Box>
+        </Container>
+    );
 };
 
 export default WithCollapsibleMenuItems;

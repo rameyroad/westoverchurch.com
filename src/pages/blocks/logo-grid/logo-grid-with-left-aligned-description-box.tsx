@@ -2,7 +2,7 @@ import React from 'react';
 import WithLeftAlignedDescriptionBox from 'blocks/logoGrid/WithLeftAlignedDescriptionBox';
 
 const LogoGridWithLeftAlignedDescriptionBoxPage = (): JSX.Element => {
-  return <WithLeftAlignedDescriptionBox />;
+    return <WithLeftAlignedDescriptionBox />;
 };
 
 export default LogoGridWithLeftAlignedDescriptionBoxPage;

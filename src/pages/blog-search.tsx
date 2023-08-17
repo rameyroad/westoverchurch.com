@@ -2,7 +2,7 @@ import React from 'react';
 import BlogSearch from 'views/BlogSearch';
 
 const BlogSearchPage = (): JSX.Element => {
-  return <BlogSearch />;
+    return <BlogSearch />;
 };
 
 export default BlogSearchPage;

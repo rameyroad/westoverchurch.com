@@ -2,7 +2,7 @@ import React from 'react';
 import WithImageGrid from 'blocks/productDetails/WithImageGrid';
 
 const WithImageGridPage = (): JSX.Element => {
-  return <WithImageGrid />;
+    return <WithImageGrid />;
 };
 
 export default WithImageGridPage;

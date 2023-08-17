@@ -2,7 +2,7 @@ import React from 'react';
 import NavWithCenteredSearchView from 'blocks/storeNavigation/NavWithCenteredSearch';
 
 const NavWithCenteredSearchPage = (): JSX.Element => {
-  return <NavWithCenteredSearchView />;
+    return <NavWithCenteredSearchView />;
 };
 
 export default NavWithCenteredSearchPage;

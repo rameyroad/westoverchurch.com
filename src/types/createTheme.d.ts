@@ -2,11 +2,11 @@
 import { Theme, ThemeOptions } from '@mui/material/styles/createTheme';
 
 declare module '@mui/material/styles/createTheme' {
-  interface Theme {
-    themeToggler: () => void;
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    themeToggler?: () => void;
-  }
+    interface Theme {
+        themeToggler: () => void;
+    }
+    // allow configuration using `createTheme`
+    interface ThemeOptions {
+        themeToggler?: () => void;
+    }
 }

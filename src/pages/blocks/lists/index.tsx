@@ -2,7 +2,7 @@ import React from 'react';
 import IndexView from 'blocks/lists/IndexView';
 
 const IndexPage = (): JSX.Element => {
-  return <IndexView />;
+    return <IndexView />;
 };
 
 export default IndexPage;

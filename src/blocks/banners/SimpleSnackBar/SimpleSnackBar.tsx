@@ -7,52 +7,41 @@ import CloseIcon from '@mui/icons-material/Close';
 import Container from 'components/Container';
 
 const SimpleSnackBar = (): JSX.Element => {
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
 
-  const handleClick = (): void => {
-    setOpen(true);
-  };
+    const handleClick = (): void => {
+        setOpen(true);
+    };
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string): void => {
-    if (reason === 'clickaway') {
-      return;
-    }
+    const handleClose = (event?: React.SyntheticEvent, reason?: string): void => {
+        if (reason === 'clickaway') {
+            return;
+        }
 
-    setOpen(false);
-  };
+        setOpen(false);
+    };
 
-  const action = (
-    <div>
-      <Button color={'primary'} size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </div>
-  );
+    const action = (
+        <div>
+            <Button color={'primary'} size="small" onClick={handleClose}>
+                UNDO
+            </Button>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </div>
+    );
 
-  return (
-    <Container>
-      <div>
-        <Button onClick={handleClick} variant={'outlined'} fullWidth>
-          Open simple snackbar
-        </Button>
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          onClose={handleClose}
-          message="Note archived"
-          action={action}
-        />
-      </div>
-    </Container>
-  );
+    return (
+        <Container>
+            <div>
+                <Button onClick={handleClick} variant={'outlined'} fullWidth>
+                    Open simple snackbar
+                </Button>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} message="Note archived" action={action} />
+            </div>
+        </Container>
+    );
 };
 
 export default SimpleSnackBar;

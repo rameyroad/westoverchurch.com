@@ -8,7 +8,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "prettier:fix": "prettier './src/**/*.{tsx,ts}' --write",
+        "prettier:fix2": "prettier './src/**/*.[tsx,ts]' --write",
+        "prettier:fix": "prettier \"**/*.{ts,tsx}\" --write",
         "eslint:fix": "eslint ./src --fix",
         "codeStyle:fix": "npm run prettier:fix && npm run eslint:fix",
         "clear-all": "rimraf ./node_modules ./.next"

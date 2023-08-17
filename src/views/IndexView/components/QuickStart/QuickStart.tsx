@@ -7,44 +7,38 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 const QuickStart = (): JSX.Element => {
-  const theme = useTheme();
-  return (
-    <Box>
-      <Box marginBottom={4}>
-        <Box marginBottom={2}>
-          <Typography
-            variant="h4"
-            color="text.primary"
-            align={'center'}
-            gutterBottom
-            sx={{
-              fontWeight: 700,
-            }}
-          >
-            Build tools and full documention
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            color="text.secondary"
-            sx={{ fontWeight: 400 }}
-            align={'center'}
-          >
-            Components, plugins, and build tools are all thoroughly documented
-            with live examples and markup for easier use and customization.
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        component={SyntaxHighlighter}
-        language={'javascript'}
-        style={vs2015}
-        padding={`${theme.spacing(2)} !important`}
-        borderRadius={2}
-        margin={`${theme.spacing(0)} !important`}
-        bgcolor={'#21325b !important'}
-      >
-        {`
+    const theme = useTheme();
+    return (
+        <Box>
+            <Box marginBottom={4}>
+                <Box marginBottom={2}>
+                    <Typography
+                        variant="h4"
+                        color="text.primary"
+                        align={'center'}
+                        gutterBottom
+                        sx={{
+                            fontWeight: 700,
+                        }}
+                    >
+                        Build tools and full documention
+                    </Typography>
+                    <Typography variant="h6" component="p" color="text.secondary" sx={{ fontWeight: 400 }} align={'center'}>
+                        Components, plugins, and build tools are all thoroughly documented with live examples and markup for easier use and
+                        customization.
+                    </Typography>
+                </Box>
+            </Box>
+            <Box
+                component={SyntaxHighlighter}
+                language={'javascript'}
+                style={vs2015}
+                padding={`${theme.spacing(2)} !important`}
+                borderRadius={2}
+                margin={`${theme.spacing(0)} !important`}
+                bgcolor={'#21325b !important'}
+            >
+                {`
 > $ yarn install
 // Or
 > $ npm install
@@ -58,9 +52,9 @@ const QuickStart = (): JSX.Element => {
 
 // LiveReload started. Opening localhost:3000
         `}
-      </Box>
-    </Box>
-  );
+            </Box>
+        </Box>
+    );
 };
 
 export default QuickStart;

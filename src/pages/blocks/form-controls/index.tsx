@@ -2,7 +2,7 @@ import React from 'react';
 import IndexView from 'blocks/formControls/IndexView';
 
 const IndexPage = (): JSX.Element => {
-  return <IndexView />;
+    return <IndexView />;
 };
 
 export default IndexPage;

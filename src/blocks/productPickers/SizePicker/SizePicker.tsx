@@ -7,41 +7,37 @@ import Stack from '@mui/material/Stack';
 import Container from 'components/Container';
 
 const SizePicker = (): JSX.Element => {
-  const theme = useTheme();
-  const [size, setSize] = useState('32');
+    const theme = useTheme();
+    const [size, setSize] = useState('32');
 
-  return (
-    <Container>
-      <Box>
-        <Typography>
-          Size:{' '}
-          <Typography component={'span'} fontWeight={700}>
-            {size || ''}
-          </Typography>
-        </Typography>
-        <Stack direction={'row'} spacing={1} marginTop={1}>
-          {['30', '32', '34', '40'].map((item) => (
-            <Box
-              key={item}
-              onClick={() => setSize(item)}
-              sx={{
-                borderRadius: 1,
-                padding: 1,
-                border: `2px solid ${
-                  size === item
-                    ? theme.palette.primary.main
-                    : theme.palette.divider
-                }`,
-                cursor: 'pointer',
-              }}
-            >
-              <Typography>{item}</Typography>
+    return (
+        <Container>
+            <Box>
+                <Typography>
+                    Size:{' '}
+                    <Typography component={'span'} fontWeight={700}>
+                        {size || ''}
+                    </Typography>
+                </Typography>
+                <Stack direction={'row'} spacing={1} marginTop={1}>
+                    {['30', '32', '34', '40'].map((item) => (
+                        <Box
+                            key={item}
+                            onClick={() => setSize(item)}
+                            sx={{
+                                borderRadius: 1,
+                                padding: 1,
+                                border: `2px solid ${size === item ? theme.palette.primary.main : theme.palette.divider}`,
+                                cursor: 'pointer',
+                            }}
+                        >
+                            <Typography>{item}</Typography>
+                        </Box>
+                    ))}
+                </Stack>
             </Box>
-          ))}
-        </Stack>
-      </Box>
-    </Container>
-  );
+        </Container>
+    );
 };
 
 export default SizePicker;

@@ -2,7 +2,7 @@ import React from 'react';
 import BlogReachView from 'views/BlogReachView';
 
 const BlogReachViewPage = (): JSX.Element => {
-  return <BlogReachView />;
+    return <BlogReachView />;
 };
 
 export default BlogReachViewPage;

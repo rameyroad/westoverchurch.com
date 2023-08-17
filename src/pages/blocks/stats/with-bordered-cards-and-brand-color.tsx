@@ -2,7 +2,7 @@ import React from 'react';
 import WithBorderedCardsAndBrandColor from 'blocks/stats/WithBorderedCardsAndBrandColor';
 
 const WithBorderedCardsAndBrandColorPage = (): JSX.Element => {
-  return <WithBorderedCardsAndBrandColor />;
+    return <WithBorderedCardsAndBrandColor />;
 };
 
 export default WithBorderedCardsAndBrandColorPage;
