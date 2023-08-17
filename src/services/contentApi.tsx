@@ -40,7 +40,7 @@ export const getAllBlogPosts = async () => {
     const myHeaders = new Headers({
         Authorization: 'Basic R2xvYmFsV2ViVXNlcjo3NENGRDFEQkFBRTk0Mzk4QjY1QUE0RjUzNzYzNUIxMw==',
     });
-    const url = `https://rameyroad-westover-content.azurewebsites.net/api/content/blog`;
+    const url = 'https://rameyroad-westover-content.azurewebsites.net/api/content/blog';
     const resp = await fetch(url, {
         headers: myHeaders,
         next: { revalidate: 300 },

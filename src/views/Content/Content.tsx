@@ -90,7 +90,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
 
     return (
         <Main>
-            <Hero post={activePage} />
+            <Hero page={activePage} />
             <Container>{renderBlockContent()}</Container>
         </Main>
     );
