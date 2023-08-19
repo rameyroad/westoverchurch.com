@@ -36,7 +36,7 @@ const Topbar = ({ onSidebarOpen, primaryMenu, secondaryMenu, colorInvert = false
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
                     {primaryMenu.map((item: PageItem, key: number) => (
                         <Box key={key} marginLeft={4}>
-                            <NavItem title={item.title} id={`mainMenu-${item.id}`} items={item.items} colorInvert={colorInvert} />
+                            <NavItem item={item} id={`mainMenu-${item.id}`} items={item.items} colorInvert={colorInvert} />
                         </Box>
                     ))}
                 </Box>
@@ -57,7 +57,7 @@ const Topbar = ({ onSidebarOpen, primaryMenu, secondaryMenu, colorInvert = false
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
                     {secondaryMenu.map((item: PageItem, key: number) => (
                         <Box key={key} marginLeft={4}>
-                            <NavItem title={item.title} id={`mainMenu-${item.id}`} items={item.items} colorInvert={colorInvert} />
+                            <NavItem item={item} id={`mainMenu-${item.id}`} items={item.items} colorInvert={colorInvert} />
                         </Box>
                     ))}
                 </Box>

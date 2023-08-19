@@ -1,7 +1,8 @@
 interface PageItem {
-    isNew?: boolean;
-    title: string;
     id?: string | number;
+    title: string;
+    description: string;
+    isNew?: boolean;
     href: string;
     target?: string;
     items?: PageItem[];
