@@ -32,7 +32,7 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
                 <Box paddingX={2} paddingY={2}>
                     {pages.map((item: PageItem, key: number) => (
                         <Box key={key}>
-                            <NavItem title={item.title} items={item.items} />
+                            <NavItem title={item.title} item={item} />
                         </Box>
                     ))}
                 </Box>
