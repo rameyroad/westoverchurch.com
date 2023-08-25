@@ -7,9 +7,12 @@ import Page from '../components/Page';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
+import { NextIntlClientProvider } from 'next-intl';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function App({ Component, pageProps }): JSX.Element {
+    const timeZone = 'Europe/Vienna';
+
     return (
         <React.Fragment>
             <Head>
@@ -17,7 +20,9 @@ export default function App({ Component, pageProps }): JSX.Element {
                 <title>Westover Church</title>
             </Head>
             <Page>
-                <Component {...pageProps} />
+                <NextIntlClientProvider timeZone={'America/New_York'} locale="en">
+                    <Component {...pageProps} />
+                </NextIntlClientProvider>
             </Page>
         </React.Fragment>
     );

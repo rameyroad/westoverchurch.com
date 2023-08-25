@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
                     <meta property="og:locale" content="en_US" />
                     <meta property="og:type" content="website" />
                     <meta property="og:image" content="https://assets.maccarianagency.com/screenshots/the-front/social.png" />
-                    <meta property="og:title" content="theFront | UI Kit by Maccarian Agency." />
+                    <meta property="og:title" content="Westover Church" />
                     <meta property="og:description" content="A modern design system for your new landing and web pages." />
                     <meta property="og:url" content="https://thefront.maccarianagency.com/" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" />

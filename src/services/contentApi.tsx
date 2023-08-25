@@ -75,3 +75,43 @@ export const getBlogPostBySlug = async (slug: string) => {
     }
     return null;
 };
+
+export const getPublicEvents = async () => {
+    const myHeaders = new Headers({
+        Authorization: 'Basic R2xvYmFsV2ViVXNlcjo3NENGRDFEQkFBRTk0Mzk4QjY1QUE0RjUzNzYzNUIxMw==',
+    });
+    const url = 'https://rameyroad-westover-content.azurewebsites.net/api/Events';
+    const resp = await fetch(url, {
+        headers: myHeaders,
+        next: { revalidate: 300 },
+    });
+    if (resp.ok) {
+        try {
+            const m = await resp.json();
+            return m;
+        } catch (err) {
+            console.log('error', err);
+        }
+    }
+    return null;
+};
+
+export const getMinistryEvents = async (ministryId: string) => {
+    const myHeaders = new Headers({
+        Authorization: 'Basic R2xvYmFsV2ViVXNlcjo3NENGRDFEQkFBRTk0Mzk4QjY1QUE0RjUzNzYzNUIxMw==',
+    });
+    const url = `https://rameyroad-westover-content.azurewebsites.net/api/Events/by-ministry-id/${ministryId}`;
+    const resp = await fetch(url, {
+        headers: myHeaders,
+        next: { revalidate: 300 },
+    });
+    if (resp.ok) {
+        try {
+            const m = await resp.json();
+            return m;
+        } catch (err) {
+            console.log('error', err);
+        }
+    }
+    return null;
+};
