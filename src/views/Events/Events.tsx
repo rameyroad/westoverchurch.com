@@ -6,6 +6,7 @@ import { Box, Container, Modal, Stack, Typography } from '@mui/material';
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { formatDate } from '@fullcalendar/core';
 
 import Main from 'layouts/Main';
 import { getPublicEvents } from 'services/contentApi';
@@ -107,7 +108,20 @@ const Events = (): JSX.Element => {
                     <Typography id="modal-modal-description" sx={{ mt: 2 }} variant="body1">
                         {selectedEvent?.description}
                         <br />
-                        {format.dateTime(selectedEvent?.startDateTime, 'short')}
+                        {formatDate(selectedEvent?.startDateTime, {
+                            month: 'short',
+                            year: 'numeric',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            locale: 'en',
+                        })}{' '}
+                        -{' '}
+                        {formatDate(selectedEvent?.endDateTime, {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            locale: 'en',
+                        })}
                     </Typography>
                 </Box>
             </Modal>
@@ -122,12 +136,16 @@ const Events = (): JSX.Element => {
                                     meridiem: false,
                                 }}
                                 headerToolbar={{
-                                    start: 'title', // will normally be on the left. if RTL, will be on the right
-                                    center: '',
-                                    end: 'today prev,next', // will normally be on the right. if RTL, will be on the left
+                                    start: 'today', // will normally be on the left. if RTL, will be on the right
+                                    center: 'title',
+                                    end: 'prev,next', // will normally be on the right. if RTL, will be on the left
+                                }}
+                                footerToolbar={{
+                                    start: 'today', // will normally be on the left. if RTL, will be on the right
+                                    end: 'prev,next', // will normally be on the right. if RTL, will be on the left
                                 }}
                                 buttonText={{
-                                    today: 'today',
+                                    today: 'Today',
                                     month: 'month',
                                     week: 'week',
                                     day: 'day',
