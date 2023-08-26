@@ -1,0 +1,4 @@
+.fc-event-selected,
+.fc-event:focus {
+    box-shadow: none !important;
+}
