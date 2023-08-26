@@ -29,6 +29,19 @@ const Events = (): JSX.Element => {
     const [eventList, setEventList] = useState<any | null>(null);
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
+    const getTextColor = (event: Event) => {
+        switch (event.eventTypeKey) {
+            case 1:
+                return '#fefefe';
+            case 2:
+                return '#fefefe';
+            case 3:
+                return '#fefefe';
+            case 4:
+                return '#fefefe';
+        }
+    };
+
     const getBackgroundColor = (event: Event) => {
         switch (event.eventTypeKey) {
             case 1:
@@ -58,6 +71,7 @@ const Events = (): JSX.Element => {
                         end: event.endDateTime,
                         backgroundColor: getBackgroundColor(event),
                         borderColor: '#FFFFFF',
+                        textColor: getTextColor(event),
                         details: event,
                     });
                 });
@@ -69,7 +83,7 @@ const Events = (): JSX.Element => {
     const renderEventContent = (eventInfo: any) => {
         console.log('eventInfo', eventInfo.event);
         return (
-            <Stack>
+            <Stack sx={{ backgroundColor: `${eventInfo.backgroundColor}`, p: '5px', color: `${eventInfo.textColor}`, borderRadius: 1 }}>
                 <Typography fontSize={14} fontWeight={700}>
                     {eventInfo.event.title}
                 </Typography>
