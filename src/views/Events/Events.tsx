@@ -5,12 +5,15 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Box, Container, Modal, Stack, Typography } from '@mui/material';
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
+
 import { formatDate } from '@fullcalendar/core';
 
 import Main from 'layouts/Main';
 import { getPublicEvents } from 'services/contentApi';
 import { GroupedEvents, Event } from 'types/events';
+import Link from 'next/link';
 
 const style = {
     position: 'absolute',
@@ -83,18 +86,22 @@ const Events = (): JSX.Element => {
     const renderEventContent = (eventInfo: any) => {
         console.log('eventInfo', eventInfo.event);
         return (
-            <Stack sx={{ backgroundColor: `${eventInfo.backgroundColor}`, p: '5px', color: `${eventInfo.textColor}`, borderRadius: 1 }}>
-                <Typography fontSize={14} fontWeight={700}>
-                    {eventInfo.event.title}
-                </Typography>
-                <Typography fontSize={12} fontWeight={300}>
-                    {eventInfo.timeText}
-                </Typography>
-                {eventInfo.event.groupId && (
-                    <Typography fontSize={12} fontWeight={300}>
-                        ({eventInfo.event.groupId})
+            <Stack
+                sx={{ backgroundColor: `${eventInfo.backgroundColor}`, p: '5px', color: `${eventInfo.textColor}`, borderRadius: 1, width: 'auto' }}
+            >
+                <Link href={''} style={{ color: `${eventInfo.textColor}` }}>
+                    <Typography fontSize={14} fontWeight={700}>
+                        {eventInfo.event.title}
                     </Typography>
-                )}
+                    <Typography fontSize={12} fontWeight={300}>
+                        {eventInfo.timeText}
+                    </Typography>
+                    {eventInfo.event.groupId && (
+                        <Typography fontSize={12} fontWeight={300}>
+                            ({eventInfo.event.groupId})
+                        </Typography>
+                    )}
+                </Link>
             </Stack>
         );
     };
@@ -115,7 +122,7 @@ const Events = (): JSX.Element => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={{ ...style, width: 400 }}>
+                <Box sx={{ ...style }}>
                     <Typography id="modal-modal-title" variant="h5">
                         {selectedEvent?.title}
                     </Typography>
@@ -144,40 +151,53 @@ const Events = (): JSX.Element => {
                     <Box sx={{ mt: 2, mb: 2 }}>
                         {eventList && (
                             <FullCalendar
+                                plugins={[dayGridPlugin, listPlugin, interactionPlugin]}
+                                initialView="dayGridMonth"
                                 eventTimeFormat={{
                                     hour: '2-digit',
                                     minute: '2-digit',
                                     meridiem: false,
                                 }}
                                 headerToolbar={{
-                                    start: 'today', // will normally be on the left. if RTL, will be on the right
-                                    center: 'title',
-                                    end: 'prev,next', // will normally be on the right. if RTL, will be on the left
+                                    // start: 'today prev,next',
+                                    start: 'title',
+                                    end: 'dayGridMonth,dayGridWeek,listDay',
                                 }}
                                 footerToolbar={{
-                                    start: 'today', // will normally be on the left. if RTL, will be on the right
-                                    end: 'prev,next', // will normally be on the right. if RTL, will be on the left
+                                    start: '', // will normally be on the left. if RTL, will be on the right
+                                    end: 'today prev,next', // will normally be on the right. if RTL, will be on the left
                                 }}
                                 buttonText={{
                                     today: 'Today',
-                                    month: 'month',
-                                    week: 'week',
-                                    day: 'day',
-                                    list: 'list',
+                                    month: 'Month',
+                                    week: 'Week',
+                                    list: 'Day',
                                 }}
-                                plugins={[dayGridPlugin, timeGridPlugin]}
-                                initialView="dayGridMonth"
+                                editable={true}
+                                selectable={true}
+                                // selectMirror={true}
+                                // dayMaxEvents={true}
+                                select={(info: any) => {
+                                    console.log('eventsSet', info);
+                                }}
+                                eventContent={renderEventContent} // custom render function
+                                eventsSet={(info: any) => {
+                                    console.log('eventsSet', info);
+                                }} // called after events are initialized/added/changed/removed
                                 slotMinTime="06:00:00"
                                 slotMaxTime="22:00:00"
                                 initialDate={new Date()}
+                                navLinks={true}
+                                dateClick={(info: any) => {
+                                    console.log('selected', info);
+                                }}
                                 events={eventList}
-                                firstDay={0}
                                 eventClick={(info: any) => {
                                     info.jsEvent.preventDefault();
                                     const found = eventList.find((e: any) => info.event.id === e.id);
                                     setSelectedEvent(found.details);
                                 }}
-                                eventContent={renderEventContent}
+                                firstDay={0}
                                 contentHeight={1000}
                                 themeSystem="bootstrap5"
                             />
