@@ -17,11 +17,14 @@ jobs:
     steps:
     - name: Checkout GitHub Action
       uses: actions/checkout@v3
+      with:
+          node-version: '16'
 
     - name: Login via Azure CLI
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        node-version: '16'
 
     - name: Build and push image
       uses: azure/docker-login@v1
@@ -29,12 +32,14 @@ jobs:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
+        node-version: '16'
 
     - run: |
         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}
         docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}
 
   deploy:
+
     runs-on: ubuntu-latest
 
     needs: build
@@ -45,6 +50,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true
+        node-version: '16'
 
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
@@ -54,6 +60,7 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         images: "${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}"
+        node-version: '16'
 
     - name: Run Azure PowerShell script
       uses: azure/powershell@v1
@@ -62,3 +69,4 @@ jobs:
         inlineScript: |
           az webapp restart --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
         azPSVersion: "latest"
+        node-version: '16'
