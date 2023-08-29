@@ -6,3 +6,4 @@ export { ImageGalleryBlock } from './ImageGalleryBlock';
 export { ItemHtmlBlock } from './ItemHtmlBlock';
 export { ItemImageBlock } from './ItemImageBlock';
 export { ItemPageBlock } from './ItemPageBlock';
+export { SeparatorBlock } from './SeparatorBlock';

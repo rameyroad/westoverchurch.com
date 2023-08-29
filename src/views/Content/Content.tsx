@@ -8,8 +8,8 @@ import Container from 'components/Container';
 
 import { Block, DynamicPage } from 'types/dynamicPage';
 import { getPageBySlug } from 'services/contentApi';
-import { Hero, HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock } from './components';
-import { Divider, Typography } from '@mui/material';
+import { Hero, HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock, SeparatorBlock } from './components';
+import { Typography } from '@mui/material';
 
 interface Props {
     pageName: string;
@@ -63,7 +63,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
             case 'Piranha.Extend.Blocks.ImageBlock':
                 return <ImageBlock block={block} />;
             case 'Piranha.Extend.Blocks.SeparatorBlock':
-                return <Divider />;
+                return <SeparatorBlock block={block} />;
             default:
                 return (
                     <Fragment>
