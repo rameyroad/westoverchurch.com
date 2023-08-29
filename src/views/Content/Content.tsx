@@ -46,8 +46,6 @@ const Content = ({ pageName }: Props): JSX.Element => {
         }
     }, [pageName]);
 
-    useEffect(() => {}, [activePage]);
-
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
             case 'Piranha.Extend.Blocks.HtmlBlock':

@@ -109,8 +109,6 @@ const Events = (): JSX.Element => {
         getEventsAsync();
     }, []);
 
-    useEffect(() => {}, [selectedEvent]);
-
     return (
         <Box sx={{ overflowX: 'hidden' }}>
             <Modal

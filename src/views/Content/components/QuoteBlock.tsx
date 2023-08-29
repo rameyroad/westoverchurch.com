@@ -3,8 +3,8 @@ import { Block, Item } from 'types/dynamicPage';
 import { Card, Typography } from '@mui/material';
 
 export interface QuoteBlockProps {
-    block: Block;
-    item: Item;
+    block?: Block;
+    item?: Item;
 }
 
 export const QuoteBlock: React.FC<QuoteBlockProps> = ({ block, item }) => {

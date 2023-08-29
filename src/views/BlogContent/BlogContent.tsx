@@ -42,8 +42,6 @@ const Content = ({ postName }: Props): JSX.Element => {
         }
     }, [postName]);
 
-    useEffect(() => {}, [acivePost]);
-
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
             case 'Piranha.Extend.Blocks.HtmlBlock':
