@@ -2,10 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { Block, Item } from 'types/dynamicPage';
 
-export interface BlockProps {
-    block: Block;
-}
-
 export interface ItemProps {
     item: Item;
 }

@@ -7,5 +7,5 @@ export interface BlockProps {
 }
 
 export const SeparatorBlock: React.FC<BlockProps> = ({ block }) => {
-    return <Divider sx={{ mt: 3, mb: 3, ml: 10, mr: 10 }} />;
+    return <Divider sx={{ mt: 5, mb: 5, ml: 10, mr: 10 }} />;
 };

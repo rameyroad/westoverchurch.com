@@ -8,6 +8,7 @@
 
 export interface Item {
     $type: string;
+    author: QuoteBody;
     body: ItemBody;
     aspect?: Aspect;
     id: string;
@@ -16,6 +17,7 @@ export interface Item {
 
 export interface Block {
     $type: string;
+    author: QuoteBody;
     body?: BlockBody;
     id: string;
     type: string;
@@ -144,6 +146,10 @@ export interface Aspect {
 }
 
 export interface BlockBody {
+    value: string;
+}
+
+export interface QuoteBody {
     value: string;
 }
 

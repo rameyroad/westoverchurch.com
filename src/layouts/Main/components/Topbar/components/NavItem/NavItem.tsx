@@ -72,7 +72,6 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
 
     const hasActiveLink = () => item.items?.find((i) => i.href === activeLink);
     const linkColor = colorInvert ? 'common.white' : 'text.primary';
-    console.log('item', item);
 
     return (
         <Box>

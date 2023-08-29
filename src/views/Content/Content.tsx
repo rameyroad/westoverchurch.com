@@ -8,7 +8,7 @@ import Container from 'components/Container';
 
 import { Block, DynamicPage } from 'types/dynamicPage';
 import { getPageBySlug } from 'services/contentApi';
-import { Hero, HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock, SeparatorBlock } from './components';
+import { Hero, HtmlBlock, ColumnBlock, ImageGalleryBlock, ImageBlock, SeparatorBlock, QuoteBlock } from './components';
 import { Typography } from '@mui/material';
 
 interface Props {
@@ -46,11 +46,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
         }
     }, [pageName]);
 
-    useEffect(() => {
-        if (activePage) {
-            console.log('pageContent', activePage);
-        }
-    }, [activePage]);
+    useEffect(() => {}, [activePage]);
 
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
@@ -64,6 +60,8 @@ const Content = ({ pageName }: Props): JSX.Element => {
                 return <ImageBlock block={block} />;
             case 'Piranha.Extend.Blocks.SeparatorBlock':
                 return <SeparatorBlock block={block} />;
+            case 'Piranha.Extend.Blocks.QuoteBlock':
+                return <QuoteBlock block={block} />;
             default:
                 return (
                     <Fragment>

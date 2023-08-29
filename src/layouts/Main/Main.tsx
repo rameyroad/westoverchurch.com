@@ -11,7 +11,7 @@ import TopNav from 'components/TopNav';
 
 import { Topbar, Sidebar, Footer } from './components';
 
-import { getContent } from 'services/contentApi';
+import { getContent, getSiteMap } from 'services/contentApi';
 
 interface Props {
     children: React.ReactNode;
@@ -46,7 +46,11 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
     });
 
     const getMenus = async () => {
+        const siteMap = await getSiteMap('MainSite');
+        console.log('siteMap', siteMap);
+
         const p = await getContent('mainMenu');
+        console.log('mainMenu', p);
         setPrimaryMenu(p);
 
         const s = await getContent('rightMenu');

@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
+import { notFound } from 'next/navigation';
+
+import { Box, Typography } from '@mui/material';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 
 import { Block, DynamicPost } from 'types/dynamicPage';
 import { getBlogPostBySlug } from 'services/contentApi';
-import { Typography } from '@mui/material';
 import { ColumnBlock, HtmlBlock, ImageBlock, ImageGalleryBlock } from 'views/Content/components';
 import { Hero } from './components/Hero';
 
@@ -16,26 +15,22 @@ interface Props {
     postName: string;
 }
 
-const BlogContent = ({ postName }: Props): JSX.Element => {
-    const theme = useTheme();
-
+const Content = ({ postName }: Props): JSX.Element => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [acivePost, setActivePost] = useState<DynamicPost | null>(null);
-
-    const router = useRouter();
 
     const getContent = async () => {
         setIsLoading(true);
         try {
             const pc = await getBlogPostBySlug(postName);
             if (pc == null) {
-                router.push('/not-found');
+                notFound();
             } else {
                 setActivePost(pc);
             }
         } catch (error) {
             console.log(error);
-            router.push('/not-found');
+            notFound();
         } finally {
             setIsLoading(false);
         }
@@ -47,11 +42,7 @@ const BlogContent = ({ postName }: Props): JSX.Element => {
         }
     }, [postName]);
 
-    useEffect(() => {
-        if (acivePost) {
-            console.log('pageContent', acivePost);
-        }
-    }, [acivePost]);
+    useEffect(() => {}, [acivePost]);
 
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
@@ -97,4 +88,4 @@ const BlogContent = ({ postName }: Props): JSX.Element => {
     );
 };
 
-export default BlogContent;
+export default Content;

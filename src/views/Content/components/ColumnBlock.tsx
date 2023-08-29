@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Block, Item } from 'types/dynamicPage';
 
-import { ItemHtmlBlock, ItemImageBlock, ItemPageBlock } from '.';
+import { ItemHtmlBlock, ItemImageBlock, ItemPageBlock, QuoteBlock } from '.';
 import { Box, Container, Grid } from '@mui/material';
 
 export interface BlockProps {
@@ -21,6 +21,8 @@ export const ColumnBlock: React.FC<BlockProps> = ({ block }) => {
                 return <ItemImageBlock item={item} />;
             case 'Piranha.Extend.Blocks.PageBlock':
                 return <ItemPageBlock item={item} />;
+            case 'Piranha.Extend.Blocks.QuoteBlock':
+                return <QuoteBlock item={item} />;
             default:
                 return (
                     <Fragment>

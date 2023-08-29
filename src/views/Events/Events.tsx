@@ -84,7 +84,6 @@ const Events = (): JSX.Element => {
     };
 
     const renderEventContent = (eventInfo: any) => {
-        console.log('eventInfo', eventInfo.event);
         return (
             <Stack
                 sx={{ backgroundColor: `${eventInfo.backgroundColor}`, p: '5px', color: `${eventInfo.textColor}`, borderRadius: 1, width: 'auto' }}
@@ -110,9 +109,7 @@ const Events = (): JSX.Element => {
         getEventsAsync();
     }, []);
 
-    useEffect(() => {
-        if (selectedEvent) console.log('selectedEvent', selectedEvent);
-    }, [selectedEvent]);
+    useEffect(() => {}, [selectedEvent]);
 
     return (
         <Box sx={{ overflowX: 'hidden' }}>
