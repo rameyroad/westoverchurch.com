@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Block, Item } from 'types/dynamicPage';
 
 import { ItemHtmlBlock, ItemImageBlock, ItemPageBlock } from '.';
+import { Box, Container, Grid } from '@mui/material';
 
 export interface BlockProps {
     block: Block;
@@ -31,19 +32,52 @@ export const ColumnBlock: React.FC<BlockProps> = ({ block }) => {
 
     const numColumns = block.items;
 
+    const getColumWidth = (size: string, length: number) => {
+        switch (size) {
+            case 'xs':
+            case 'sm':
+                return 12;
+
+            case 'md':
+            case 'lg':
+                switch (length % 12) {
+                    case 1:
+                        return 12;
+                    case 2:
+                        return 6;
+                    case 3:
+                        return 4;
+                    case 4:
+                        return 3;
+                    case 5:
+                    case 6:
+                    case 7:
+                        return 2;
+                    default:
+                        return 1;
+                }
+        }
+    };
+
     return (
-        <div className="block column-block">
-            <div className="container">
-                <div className="row">
-                    {block.items?.map((item: Item, index: number) => {
+        <Box>
+            <Container>
+                <Grid container>
+                    {block.items?.map((item: Item, key: number) => {
                         return (
-                            <div className="col-md" key={index}>
-                                {renderItem(item, index)}
-                            </div>
+                            <Grid
+                                item
+                                key={key}
+                                sm={getColumWidth('sm', block.items.length)}
+                                md={getColumWidth('md', block.items.length)}
+                                sx={{ p: 2 }}
+                            >
+                                {renderItem(item, key)}
+                            </Grid>
                         );
                     })}
-                </div>
-            </div>
-        </div>
+                </Grid>
+            </Container>
+        </Box>
     );
 };

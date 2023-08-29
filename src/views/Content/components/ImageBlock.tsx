@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React from 'react';
 import { Block } from 'types/dynamicPage';
 
@@ -6,5 +7,5 @@ export interface BlockProps {
 }
 
 export const ImageBlock: React.FC<BlockProps> = ({ block }) => {
-    return <div className="block image-block">image-block</div>;
+    return <Box className="block image-block">image-block</Box>;
 };
