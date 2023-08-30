@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import { Breadcrumb, Newsletter, Result } from './components';
-import { getAllBlogPosts } from 'services/contentApi';
-import { DynamicPost } from 'types/dynamicPage';
+import { Newsletter, Result } from './components';
 
 const BlogSearch = (): JSX.Element => {
     const theme = useTheme();
     return (
         <Main>
-            <Box bgcolor={'alternate.main'}>
-                <Container paddingY={2}>
-                    <Breadcrumb />
-                </Container>
-            </Box>
             <Container>
                 <Result />
             </Container>

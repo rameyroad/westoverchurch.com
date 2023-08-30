@@ -10,6 +10,7 @@ import { Block, DynamicPost } from 'types/dynamicPage';
 import { getBlogPostBySlug } from 'services/contentApi';
 import { ColumnBlock, HtmlBlock, ImageBlock, ImageGalleryBlock } from 'views/Content/components';
 import { Hero } from './components/Hero';
+import Breadcrumb from 'views/BlogContent/components/Breadcrumb/Breadcrumb';
 
 interface Props {
     postName: string;
@@ -17,7 +18,7 @@ interface Props {
 
 const Content = ({ postName }: Props): JSX.Element => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [acivePost, setActivePost] = useState<DynamicPost | null>(null);
+    const [activePost, setActivePost] = useState<DynamicPost | null>(null);
 
     const getContent = async () => {
         setIsLoading(true);
@@ -62,10 +63,10 @@ const Content = ({ postName }: Props): JSX.Element => {
     };
 
     const renderBlockContent = () => {
-        if (acivePost && acivePost.blocks) {
+        if (activePost && activePost.blocks) {
             return (
                 <Box>
-                    {acivePost.blocks.map((block: Block, index: number) => {
+                    {activePost.blocks.map((block: Block, index: number) => {
                         return (
                             <Typography component={'p'} key={index}>
                                 {renderBlock(block, index)}
@@ -80,7 +81,27 @@ const Content = ({ postName }: Props): JSX.Element => {
 
     return (
         <Main>
-            <Hero post={acivePost} />
+            {activePost && (
+                <Box bgcolor={'alternate.main'}>
+                    <Container paddingY={2}>
+                        <Breadcrumb
+                            breadcrumbs={[
+                                {
+                                    href: '/blog',
+                                    title: 'Blog Home',
+                                    isActive: false,
+                                },
+                                {
+                                    href: '#',
+                                    title: `${activePost?.title ?? ''}`,
+                                    isActive: true,
+                                },
+                            ]}
+                        />
+                    </Container>
+                </Box>
+            )}
+            <Hero post={activePost} />
             <Container>{renderBlockContent()}</Container>
         </Main>
     );
