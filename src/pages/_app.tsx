@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { NextIntlClientProvider } from 'next-intl';
 
 import 'aos/dist/aos.css';
-import './styles/custom.css';
+import '../styles/global.css';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function App({ Component, pageProps }): JSX.Element {
