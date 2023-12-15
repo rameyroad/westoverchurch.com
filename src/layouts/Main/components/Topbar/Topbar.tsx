@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavItem } from './components';
 
 import { SiteMapItem } from 'types/navigation/siteMapItem';
-import { PageItem } from 'types/navigation/pageItem';
 
 interface Props {
     // eslint-disable-next-line @typescript-eslint/ban-types
