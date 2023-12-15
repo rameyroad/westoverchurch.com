@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -6,15 +6,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { NavItem } from './components';
 
+import { SiteMapItem } from 'types/navigation/siteMapItem';
+import { PageItem } from 'types/navigation/pageItem';
+
 interface Props {
     // eslint-disable-next-line @typescript-eslint/ban-types
     onSidebarOpen: () => void;
     primaryMenu: Array<PageItem>;
     secondaryMenu: Array<PageItem>;
+    siteMap: Array<SiteMapItem>;
     colorInvert?: boolean;
 }
 
-const Topbar = ({ onSidebarOpen, primaryMenu, secondaryMenu, colorInvert = false }: Props): JSX.Element => {
+const Topbar = ({ onSidebarOpen, siteMap, colorInvert = false }: Props): JSX.Element => {
     const theme = useTheme();
     const { mode } = theme.palette;
 
@@ -32,9 +36,9 @@ const Topbar = ({ onSidebarOpen, primaryMenu, secondaryMenu, colorInvert = false
                     width={50}
                 />
             </Box>
-            {primaryMenu && (
+            {siteMap && (
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-                    {primaryMenu.map((item: PageItem, key: number) => (
+                    {siteMap.slice(0, 4).map((item: SiteMapItem, key: number) => (
                         <Box key={key} marginLeft={4}>
                             <NavItem item={item} id={`mainMenu-${item.id}`} colorInvert={colorInvert} />
                         </Box>
@@ -53,9 +57,9 @@ const Topbar = ({ onSidebarOpen, primaryMenu, secondaryMenu, colorInvert = false
                     width={50}
                 />
             </Box>
-            {secondaryMenu && (
+            {siteMap && (
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-                    {secondaryMenu.map((item: PageItem, key: number) => (
+                    {siteMap.slice(4).map((item: SiteMapItem, key: number) => (
                         <Box key={key} marginLeft={4}>
                             <NavItem item={item} id={`mainMenu-${item.id}`} colorInvert={colorInvert} />
                         </Box>

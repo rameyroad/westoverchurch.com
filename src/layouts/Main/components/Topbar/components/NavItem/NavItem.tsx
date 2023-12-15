@@ -1,14 +1,13 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { alpha, useTheme } from '@mui/material/styles';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+
+import { Box, Button, Grid, Popover, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { alpha, useTheme } from '@mui/material/styles';
+
+import { SiteMapItem } from 'types/navigation/siteMapItem';
 
 interface SingleItemProps {
-    item: PageItem;
+    item: SiteMapItem;
 }
 
 const SingleItem = ({ item }: SingleItemProps): JSX.Element => {
@@ -22,32 +21,72 @@ const SingleItem = ({ item }: SingleItemProps): JSX.Element => {
     return (
         <Button
             component={'a'}
-            href={item.href}
+            href={item.permalink}
             fullWidth
             sx={{
                 justifyContent: 'flex-start',
-                color: activeLink === item.href ? theme.palette.primary.main : theme.palette.text.primary,
-                backgroundColor: activeLink === item.href ? alpha(theme.palette.primary.main, 0.1) : 'transparent',
-                fontWeight: activeLink === item.href ? 600 : 400,
+                color: activeLink === item.permalink ? theme.palette.primary.main : theme.palette.text.primary,
+                backgroundColor: activeLink === item.permalink ? alpha(theme.palette.primary.main, 0.1) : 'transparent',
+                fontWeight: activeLink === item.permalink ? 600 : 400,
             }}
         >
             <Typography fontWeight={400}>{item?.title}</Typography>
-            {item.isNew && (
+            {/* {item && (
                 <Box padding={0.5} display={'inline-flex'} borderRadius={1} bgcolor={'primary.main'} marginLeft={2}>
                     <Typography variant={'caption'} sx={{ color: 'common.white', lineHeight: 1 }}>
                         new
                     </Typography>
                 </Box>
-            )}
+            )} */}
         </Button>
     );
 };
 
 interface NavItemProps {
     id: string;
-    item: PageItem;
+    item: SiteMapItem;
     colorInvert?: boolean;
 }
+
+interface NavItemBoxProps {
+    id: string;
+    item: SiteMapItem;
+    openedPopoverId: string;
+    activeLink: string;
+    colorInvert?: boolean;
+    level?: number;
+    handleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, popoverId: string) => void;
+}
+
+const NavItemBox = ({ item, id, activeLink, openedPopoverId, level, colorInvert = false, handleClick }: NavItemBoxProps): JSX.Element => {
+    const theme = useTheme();
+
+    const hasActiveLink = () => item.items?.find((i) => i.permalink === activeLink);
+    const linkColor = colorInvert ? 'common.white' : 'text.primary';
+
+    return (
+        <Box display={'flex'} alignItems={'center'} aria-describedby={id} sx={{ cursor: 'pointer' }} onClick={(e) => handleClick(e, id)}>
+            {level === 1 && item.items?.length !== 0 ? (
+                <Fragment>
+                    <Typography fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400} color={linkColor}>
+                        {item?.title} {level}
+                    </Typography>
+                    <ExpandMoreIcon
+                        sx={{
+                            marginLeft: theme.spacing(1 / 4),
+                            width: 16,
+                            height: 16,
+                            transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
+                            color: linkColor,
+                        }}
+                    />
+                </Fragment>
+            ) : (
+                <SingleItem item={item} />
+            )}
+        </Box>
+    );
+};
 
 const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element => {
     const theme = useTheme();
@@ -70,31 +109,17 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
         setActiveLink(window && window.location ? window.location.pathname : '');
     }, []);
 
-    const hasActiveLink = () => item.items?.find((i) => i.href === activeLink);
-    const linkColor = colorInvert ? 'common.white' : 'text.primary';
-
     return (
         <Box>
-            <Box display={'flex'} alignItems={'center'} aria-describedby={id} sx={{ cursor: 'pointer' }} onClick={(e) => handleClick(e, id)}>
-                {item.items ? (
-                    <Fragment>
-                        <Typography fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400} color={linkColor}>
-                            {item?.title}
-                        </Typography>
-                        <ExpandMoreIcon
-                            sx={{
-                                marginLeft: theme.spacing(1 / 4),
-                                width: 16,
-                                height: 16,
-                                transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
-                                color: linkColor,
-                            }}
-                        />
-                    </Fragment>
-                ) : (
-                    <SingleItem item={item} />
-                )}
-            </Box>
+            <NavItemBox
+                item={item}
+                id={id}
+                activeLink={activeLink}
+                openedPopoverId={openedPopoverId}
+                level={1}
+                colorInvert={colorInvert}
+                handleClick={handleClick}
+            />
             {item.items?.length !== 0 && (
                 <Popover
                     elevation={3}
@@ -124,28 +149,17 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
                     }}
                 >
                     <Grid container spacing={0.5}>
-                        {item.items?.map((p, i) => (
+                        {item.items?.map((item, i) => (
                             <Grid item key={i} xs={item.items.length > 12 ? 6 : 12}>
-                                <Button
-                                    component={'a'}
-                                    href={p.href}
-                                    fullWidth
-                                    sx={{
-                                        justifyContent: 'flex-start',
-                                        color: activeLink === p.href ? theme.palette.primary.main : theme.palette.text.primary,
-                                        backgroundColor: activeLink === p.href ? alpha(theme.palette.primary.main, 0.1) : 'transparent',
-                                        fontWeight: activeLink === p.href ? 600 : 400,
-                                    }}
-                                >
-                                    {p.title}
-                                    {p.isNew && (
-                                        <Box padding={0.5} display={'inline-flex'} borderRadius={1} bgcolor={'primary.main'} marginLeft={2}>
-                                            <Typography variant={'caption'} sx={{ color: 'common.white', lineHeight: 1 }}>
-                                                new
-                                            </Typography>
-                                        </Box>
-                                    )}
-                                </Button>
+                                <NavItemBox
+                                    item={item}
+                                    id={id}
+                                    activeLink={activeLink}
+                                    openedPopoverId={openedPopoverId}
+                                    level={2}
+                                    colorInvert={colorInvert}
+                                    handleClick={handleClick}
+                                />
                             </Grid>
                         ))}
                     </Grid>

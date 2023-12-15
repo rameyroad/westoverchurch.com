@@ -12,6 +12,7 @@ import TopNav from 'components/TopNav';
 import { Topbar, Sidebar, Footer } from './components';
 
 import { getContent, getSiteMap } from 'services/contentApi';
+import { SiteMapItem } from 'types/navigation/siteMapItem';
 
 interface Props {
     children: React.ReactNode;
@@ -29,6 +30,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
     const [primaryMenu, setPrimaryMenu] = useState<Array<PageItem> | null>(null);
     const [secondaryMenu, setSecondaryMenu] = useState<Array<PageItem> | null>(null);
     const [allItems, setAllItems] = useState<Array<PageItem> | null>(null);
+    const [siteMap, setSiteMap] = useState<Array<SiteMapItem> | null>(null);
 
     const handleSidebarOpen = (): void => {
         setOpenSidebar(true);
@@ -47,6 +49,11 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
 
     const getMenus = async () => {
         const siteMap = await getSiteMap('MainSite');
+        setSiteMap(siteMap);
+    };
+
+    const getMenus2 = async () => {
+        const siteMap = await getSiteMap('MainSite');
         console.log('siteMap', siteMap);
 
         const p = await getContent('mainMenu');
@@ -63,6 +70,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
     useEffect(() => {
         getMenus();
     }, []);
+
+    useEffect(() => {
+        console.log('siteMap', siteMap);
+    }, [siteMap]);
 
     return (
         <Box>
@@ -84,6 +95,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
                         onSidebarOpen={handleSidebarOpen}
                         primaryMenu={primaryMenu}
                         secondaryMenu={secondaryMenu}
+                        siteMap={siteMap}
                         colorInvert={trigger ? false : colorInvert}
                     />
                 </Container>
