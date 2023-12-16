@@ -2,16 +2,17 @@ import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import { SidebarNav } from './components';
+import { SiteMapItem } from 'types/navigation/siteMapItem';
 
 interface Props {
     // eslint-disable-next-line @typescript-eslint/ban-types
     onClose: () => void;
     open: boolean;
     variant: 'permanent' | 'persistent' | 'temporary' | undefined;
-    pages: Array<PageItem>;
+    items: Array<SiteMapItem>;
 }
 
-const Sidebar = ({ pages, open, variant, onClose }: Props): JSX.Element => {
+const Sidebar = ({ items, open, variant, onClose }: Props): JSX.Element => {
     return (
         <Drawer
             anchor="left"
@@ -31,7 +32,7 @@ const Sidebar = ({ pages, open, variant, onClose }: Props): JSX.Element => {
                     padding: 1,
                 }}
             >
-                <SidebarNav pages={pages} />
+                <SidebarNav items={items} />
             </Box>
         </Drawer>
     );

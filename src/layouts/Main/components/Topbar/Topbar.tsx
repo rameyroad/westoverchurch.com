@@ -13,11 +13,11 @@ interface Props {
     onSidebarOpen: () => void;
     primaryMenu: Array<PageItem>;
     secondaryMenu: Array<PageItem>;
-    siteMap: Array<SiteMapItem>;
+    items: Array<SiteMapItem>;
     colorInvert?: boolean;
 }
 
-const Topbar = ({ onSidebarOpen, siteMap, colorInvert = false }: Props): JSX.Element => {
+const Topbar = ({ onSidebarOpen, items, colorInvert = false }: Props): JSX.Element => {
     const theme = useTheme();
     const { mode } = theme.palette;
 
@@ -35,9 +35,9 @@ const Topbar = ({ onSidebarOpen, siteMap, colorInvert = false }: Props): JSX.Ele
                     width={50}
                 />
             </Box>
-            {siteMap && (
+            {items && (
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-                    {siteMap.slice(0, 4).map((item: SiteMapItem, key: number) => (
+                    {items.slice(0, 4).map((item: SiteMapItem, key: number) => (
                         <Box key={key} marginLeft={4}>
                             <NavItem item={item} id={`mainMenu-${item.id}`} colorInvert={colorInvert} />
                         </Box>
@@ -56,9 +56,9 @@ const Topbar = ({ onSidebarOpen, siteMap, colorInvert = false }: Props): JSX.Ele
                     width={50}
                 />
             </Box>
-            {siteMap && (
+            {items && (
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-                    {siteMap.slice(4).map((item: SiteMapItem, key: number) => (
+                    {items.slice(4).map((item: SiteMapItem, key: number) => (
                         <Box key={key} marginLeft={4}>
                             <NavItem item={item} id={`mainMenu-${item.id}`} colorInvert={colorInvert} />
                         </Box>

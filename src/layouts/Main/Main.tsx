@@ -53,9 +53,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
     };
 
     const getMenus2 = async () => {
-        const siteMap = await getSiteMap('MainSite');
-        console.log('siteMap', siteMap);
-
         const p = await getContent('mainMenu');
         console.log('mainMenu', p);
         setPrimaryMenu(p);
@@ -95,12 +92,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
                         onSidebarOpen={handleSidebarOpen}
                         primaryMenu={primaryMenu}
                         secondaryMenu={secondaryMenu}
-                        siteMap={siteMap}
+                        items={siteMap}
                         colorInvert={trigger ? false : colorInvert}
                     />
                 </Container>
             </AppBar>
-            <Sidebar onClose={handleSidebarClose} open={open} variant="temporary" pages={allItems} />
+            <Sidebar onClose={handleSidebarClose} open={open} variant="temporary" items={siteMap} />
             <main>
                 {children}
                 <Divider />

@@ -12,15 +12,14 @@ interface NavItemBoxProps {
     item: SiteMapItem;
     activeLink: string;
     colorInvert?: boolean;
-    level?: number;
     handleClick?: (e: MouseEvent, id: string) => void;
 }
 
-const NavItemBox = ({ item, id, activeLink, level, colorInvert = false, handleClick }: NavItemBoxProps): JSX.Element => {
+const NavItemBox = ({ item, id, activeLink, colorInvert = false, handleClick }: NavItemBoxProps): JSX.Element => {
     const theme = useTheme();
 
-    const hasActiveLink = () => item.items?.find((i) => i.permalink === activeLink);
-    const linkColor = colorInvert ? 'common.white' : 'text.primary';
+    // const hasActiveLink = () => item.items?.find((i) => i.permalink === activeLink);
+    // const linkColor = colorInvert ? 'common.white' : 'text.primary';
 
     return (
         <Box display={'flex'} alignItems={'center'} aria-describedby={id} sx={{ cursor: 'pointer' }}>
@@ -53,8 +52,6 @@ interface NavItemProps {
 const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element => {
     const theme = useTheme();
 
-    const [anchorEl, setAnchorEl] = useState(null);
-
     const [activeLink, setActiveLink] = useState('');
     useEffect(() => {
         setActiveLink(window && window.location ? window.location.pathname : '');
@@ -63,7 +60,7 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
     return (
         <Box>
             {item.items?.length === 0 ? (
-                <NavItemBox item={item} id={id} activeLink={activeLink} level={1} colorInvert={colorInvert} />
+                <NavItemBox item={item} id={id} activeLink={activeLink} colorInvert={colorInvert} />
             ) : (
                 <Box
                     sx={{
@@ -75,11 +72,11 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
                         {item.items.map((item: SiteMapItem, key: number) => (
                             <Fragment key={key}>
                                 {item.items?.length === 0 ? (
-                                    <NavItemBox item={item} id={id} activeLink={activeLink} level={1} colorInvert={colorInvert} />
+                                    <NavItemBox item={item} id={id} activeLink={activeLink} colorInvert={colorInvert} />
                                 ) : (
                                     <NestedMenuItem label={item.title} parentMenuOpen={true}>
                                         {item.items.map((item: SiteMapItem, key: number) => (
-                                            <NavItemBox key={key} item={item} id={id} activeLink={activeLink} level={1} colorInvert={colorInvert} />
+                                            <NavItemBox key={key} item={item} id={id} activeLink={activeLink} colorInvert={colorInvert} />
                                         ))}
                                     </NestedMenuItem>
                                 )}

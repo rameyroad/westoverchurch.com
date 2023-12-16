@@ -2,13 +2,15 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
-import NavItem from './components/NavItem';
+import { SiteMapItem } from 'types/navigation/siteMapItem';
+import NavItem from 'layouts/Main/components/Topbar/components/NavItem';
 
-interface Props {
-    pages: Array<PageItem>;
+interface SidebarNavProps {
+    items: Array<SiteMapItem>;
+    colorInvert?: boolean;
 }
 
-const SidebarNav = ({ pages }: Props): JSX.Element => {
+const SidebarNav = ({ items, colorInvert = false }: SidebarNavProps): JSX.Element => {
     const theme = useTheme();
     const { mode } = theme.palette;
 
@@ -28,11 +30,11 @@ const SidebarNav = ({ pages }: Props): JSX.Element => {
                     />
                 </Box>
             </Box>
-            {pages && (
+            {items && (
                 <Box paddingX={2} paddingY={2}>
-                    {pages.map((item: PageItem, key: number) => (
+                    {items.map((item: SiteMapItem, key: number) => (
                         <Box key={key}>
-                            <NavItem title={item.title} item={item} />
+                            <NavItem item={item} id={`mainMenu-${item.id}`} colorInvert={colorInvert} />
                         </Box>
                     ))}
                 </Box>
