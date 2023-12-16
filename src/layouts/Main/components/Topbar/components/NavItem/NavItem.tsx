@@ -10,21 +10,20 @@ import { SiteMapItem } from 'types/navigation/siteMapItem';
 interface NavItemBoxProps {
     id: string;
     item: SiteMapItem;
-    openedPopoverId: string;
     activeLink: string;
     colorInvert?: boolean;
     level?: number;
-    handleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, popoverId: string) => void;
+    handleClick?: (e: MouseEvent, id: string) => void;
 }
 
-const NavItemBox = ({ item, id, activeLink, openedPopoverId, level, colorInvert = false, handleClick }: NavItemBoxProps): JSX.Element => {
+const NavItemBox = ({ item, id, activeLink, level, colorInvert = false, handleClick }: NavItemBoxProps): JSX.Element => {
     const theme = useTheme();
 
     const hasActiveLink = () => item.items?.find((i) => i.permalink === activeLink);
     const linkColor = colorInvert ? 'common.white' : 'text.primary';
 
     return (
-        <Box display={'flex'} alignItems={'center'} aria-describedby={id} sx={{ cursor: 'pointer' }} onClick={(e) => handleClick(e, id)}>
+        <Box display={'flex'} alignItems={'center'} aria-describedby={id} sx={{ cursor: 'pointer' }}>
             <Button
                 component={'a'}
                 href={item.permalink}
@@ -55,17 +54,6 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [openedPopoverId, setOpenedPopoverId] = useState(null);
-
-    const handleClick = (event, popoverId) => {
-        setAnchorEl(event.target);
-        setOpenedPopoverId(popoverId);
-    };
-
-    const handleClose = (): void => {
-        setAnchorEl(null);
-        setOpenedPopoverId(null);
-    };
 
     const [activeLink, setActiveLink] = useState('');
     useEffect(() => {
@@ -75,15 +63,7 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
     return (
         <Box>
             {item.items?.length === 0 ? (
-                <NavItemBox
-                    item={item}
-                    id={id}
-                    activeLink={activeLink}
-                    openedPopoverId={openedPopoverId}
-                    level={1}
-                    colorInvert={colorInvert}
-                    handleClick={handleClick}
-                />
+                <NavItemBox item={item} id={id} activeLink={activeLink} level={1} colorInvert={colorInvert} />
             ) : (
                 <Box
                     sx={{
@@ -91,32 +71,15 @@ const NavItem = ({ id, item, colorInvert = false }: NavItemProps): JSX.Element =
                         backgroundColor: activeLink === item.permalink ? alpha(theme.palette.primary.main, 0.1) : 'transparent',
                     }}
                 >
-                    <NestedMenuItem label={item.title} parentMenuOpen={false}>
+                    <NestedMenuItem label={item.title} parentMenuOpen={true}>
                         {item.items.map((item: SiteMapItem, key: number) => (
                             <Fragment key={key}>
                                 {item.items?.length === 0 ? (
-                                    <NavItemBox
-                                        item={item}
-                                        id={id}
-                                        activeLink={activeLink}
-                                        openedPopoverId={openedPopoverId}
-                                        level={1}
-                                        colorInvert={colorInvert}
-                                        handleClick={handleClick}
-                                    />
+                                    <NavItemBox item={item} id={id} activeLink={activeLink} level={1} colorInvert={colorInvert} />
                                 ) : (
-                                    <NestedMenuItem label={item.title} parentMenuOpen={false}>
+                                    <NestedMenuItem label={item.title} parentMenuOpen={true}>
                                         {item.items.map((item: SiteMapItem, key: number) => (
-                                            <NavItemBox
-                                                key={key}
-                                                item={item}
-                                                id={id}
-                                                activeLink={activeLink}
-                                                openedPopoverId={openedPopoverId}
-                                                level={1}
-                                                colorInvert={colorInvert}
-                                                handleClick={handleClick}
-                                            />
+                                            <NavItemBox key={key} item={item} id={id} activeLink={activeLink} level={1} colorInvert={colorInvert} />
                                         ))}
                                     </NestedMenuItem>
                                 )}
