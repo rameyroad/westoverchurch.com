@@ -58,7 +58,7 @@ const Topbar = ({ onSidebarOpen, items, colorInvert = false }: Props): JSX.Eleme
             </Box>
             {items && (
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-                    {items.slice(4).map((item: SiteMapItem, key: number) => (
+                    {items.slice(4, 76).map((item: SiteMapItem, key: number) => (
                         <Box key={key} marginLeft={4}>
                             <NavItem item={item} id={`mainMenu-${item.id}`} colorInvert={colorInvert} />
                         </Box>
