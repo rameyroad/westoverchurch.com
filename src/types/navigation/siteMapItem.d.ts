@@ -8,7 +8,7 @@ export interface SiteMapItem {
     metaPriority: number;
     menuTitle: string;
     pageTypeName: string;
-    permalink: string;
+    permaLink: string;
     isHidden: boolean;
     published: string;
     created: string;
@@ -29,7 +29,7 @@ export interface Item {
     metaPriority: number;
     menuTitle: string;
     pageTypeName: string;
-    permalink: string;
+    permaLink: string;
     isHidden: boolean;
     published: string;
     created: string;

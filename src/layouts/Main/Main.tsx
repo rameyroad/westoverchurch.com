@@ -11,7 +11,7 @@ import TopNav from 'components/TopNav';
 
 import { Topbar, Sidebar, Footer } from './components';
 
-import { getContent, getSiteMap } from 'services/contentApi';
+import { getSiteMap } from 'services/contentApi';
 import { SiteMapItem } from 'types/navigation/siteMapItem';
 
 interface Props {
@@ -50,18 +50,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }: Props)
     const getMenus = async () => {
         const siteMap = await getSiteMap('MainSite');
         setSiteMap(siteMap);
-    };
-
-    const getMenus2 = async () => {
-        const p = await getContent('mainMenu');
-        console.log('mainMenu', p);
-        setPrimaryMenu(p);
-
-        const s = await getContent('rightMenu');
-        setSecondaryMenu(s);
-
-        const all = [...p, ...s];
-        setAllItems(all);
     };
 
     useEffect(() => {

@@ -34,7 +34,7 @@ export interface DynamicPage {
     originalPageId: null;
     isStartPage: boolean;
     slug: string;
-    permalink: string;
+    permaLink: string;
     metaTitle: null | string;
     metaKeywords: string;
     metaDescription: string;
@@ -70,7 +70,7 @@ export interface DynamicPost {
     category: Category;
     tags: any[];
     slug: string;
-    permalink: string;
+    permaLink: string;
     metaTitle: null;
     metaKeywords: null;
     metaDescription: null;

@@ -9,7 +9,7 @@ export interface ItemProps {
 export const ItemPageBlock: React.FC<ItemProps> = ({ item }) => {
     return (
         <div className="card">
-            <Link href={item.body?.page?.permalink ?? ''}>
+            <Link href={item.body?.page?.permaLink ?? ''}>
                 <img
                     className="card-img-top"
                     src={item.body?.page?.primaryImage?.media?.publicUrl ?? ''}
@@ -19,7 +19,7 @@ export const ItemPageBlock: React.FC<ItemProps> = ({ item }) => {
             <div className="card-body">
                 <h5>{item.body?.page?.title}</h5>
                 <p>{item.body?.page?.excerpt}</p>
-                <Link href={item.body?.page?.permalink ?? ''} className="btn btn-sm btn-primary">
+                <Link href={item.body?.page?.permaLink ?? ''} className="btn btn-sm btn-primary">
                     Read more
                 </Link>
             </div>

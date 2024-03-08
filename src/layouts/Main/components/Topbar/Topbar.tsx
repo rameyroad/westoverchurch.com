@@ -4,9 +4,9 @@ import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { NavItem } from './components';
-
 import { SiteMapItem } from 'types/navigation/siteMapItem';
+
+import { NavItem } from './components/NavItem';
 
 interface Props {
     // eslint-disable-next-line @typescript-eslint/ban-types

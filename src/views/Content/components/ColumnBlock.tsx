@@ -14,19 +14,19 @@ export interface ItemProps {
 
 export const ColumnBlock: React.FC<BlockProps> = ({ block }) => {
     const renderItem = (item: Item, index: number) => {
-        switch (item.type) {
-            case 'Piranha.Extend.Blocks.HtmlBlock':
+        switch (item.$type) {
+            case 'Ramey.Cms.Content.Blocks.HtmlBlock':
                 return <ItemHtmlBlock item={item} />;
-            case 'Piranha.Extend.Blocks.ImageBlock':
+            case 'Ramey.Cms.Content.Blocks.ImageBlock':
                 return <ItemImageBlock item={item} />;
-            case 'Piranha.Extend.Blocks.PageBlock':
+            case 'Ramey.Cms.Content.Blocks.PageBlock':
                 return <ItemPageBlock item={item} />;
-            case 'Piranha.Extend.Blocks.QuoteBlock':
+            case 'Ramey.Cms.Content.Blocks.QuoteBlock':
                 return <QuoteBlock item={item} />;
             default:
                 return (
                     <Fragment>
-                        <div>No item renderer for {item.type}</div>
+                        <div>No item renderer for {item.$type}</div>
                     </Fragment>
                 );
         }

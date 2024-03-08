@@ -1,1 +1,4 @@
-export { default } from './NavItem';
+import { NavItem } from './NavItem';
+import { NaviItem } from './NavItem';
+
+export { NavItem, NaviItem };

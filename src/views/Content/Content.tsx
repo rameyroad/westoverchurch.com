@@ -47,23 +47,24 @@ const Content = ({ pageName }: Props): JSX.Element => {
     }, [pageName]);
 
     const renderBlock = (block: Block, index: number) => {
-        switch (block.type) {
-            case 'Piranha.Extend.Blocks.HtmlBlock':
+        switch (block.$type) {
+            case 'Ramey.Cms.Content.Blocks.HtmlBlock':
                 return <HtmlBlock block={block} />;
-            case 'Piranha.Extend.Blocks.ColumnBlock':
+            case 'Ramey.Cms.Content.Blocks.ColumnBlock':
                 return <ColumnBlock block={block} />;
-            case 'Piranha.Extend.Blocks.ImageGalleryBlock':
+            case 'Ramey.Cms.Content.Blocks.ImageGalleryBlock':
                 return <ImageGalleryBlock block={block} />;
-            case 'Piranha.Extend.Blocks.ImageBlock':
+            case 'Ramey.Cms.Content.Blocks.ImageBlock':
                 return <ImageBlock block={block} />;
-            case 'Piranha.Extend.Blocks.SeparatorBlock':
+            case 'Ramey.Cms.Content.Blocks.SeparatorBlock':
                 return <SeparatorBlock block={block} />;
-            case 'Piranha.Extend.Blocks.QuoteBlock':
+            case 'Ramey.Cms.Content.Blocks.QuoteBlock':
                 return <QuoteBlock block={block} />;
             default:
                 return (
                     <Fragment>
-                        <div>No block renderer for block type {block.type}</div>
+                        <div>No block renderer for block type {block.$type}</div>
+                        <div>{JSON.stringify(block)}</div>
                     </Fragment>
                 );
         }

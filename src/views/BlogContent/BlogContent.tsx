@@ -45,13 +45,13 @@ const Content = ({ postName }: Props): JSX.Element => {
 
     const renderBlock = (block: Block, index: number) => {
         switch (block.type) {
-            case 'Piranha.Extend.Blocks.HtmlBlock':
+            case 'Ramey.Cms.Content.Blocks.HtmlBlock':
                 return <HtmlBlock block={block} />;
-            case 'Piranha.Extend.Blocks.ColumnBlock':
+            case 'Ramey.Cms.Content.Blocks.ColumnBlock':
                 return <ColumnBlock block={block} />;
-            case 'Piranha.Extend.Blocks.ImageGalleryBlock':
+            case 'Ramey.Cms.Content.Blocks.ImageGalleryBlock':
                 return <ImageGalleryBlock block={block} />;
-            case 'Piranha.Extend.Blocks.ImageBlock':
+            case 'Ramey.Cms.Content.Blocks.ImageBlock':
                 return <ImageBlock block={block} />;
             default:
                 return (
