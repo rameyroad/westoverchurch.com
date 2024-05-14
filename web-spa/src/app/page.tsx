@@ -1,10 +1,21 @@
 'use client'; // This is a client component 👈🏽
 
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useRouter } from 'next/navigation';
+
 import IndexView from 'views/IndexView';
 
 const IndexPage = (): JSX.Element => {
-  return <IndexView />;
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log('IndexPage');
+    router.push('/home');
+  }, []);
+
+  return <></>;
+  // return <IndexView />;
 };
 
 export default IndexPage;
