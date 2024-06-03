@@ -10,11 +10,6 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,29 +18,10 @@ jobs:
       - name: Checkout GitHub Action
         uses: actions/checkout@v3
 
-      # - name: Login via Azure CLI
-      #   # uses: azure/login@v1
-      #   uses: Azure/login@v2.1.1
-      #   with:
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: GetFederatedToken
-        uses: actions/github-script@v4
+      - name: Login via Azure CLI
+        uses: azure/login@hf_447_release
         with:
-          script: |
-            const idToken = await core.getIDToken('api://AzureADTokenExchange')
-            core.exportVariable('idToken', idToken)
-
-      - name: OIDCLoginAndRunAzurePowerShell
-        shell: pwsh
-        env:
-          tenantId: ${{ secrets.TENANT_ID }}
-          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-          clientId: ${{ secrets.CLIENT_ID }}
-        run: |
-          Connect-AzAccount -ServicePrincipal -ApplicationId $env:clientId -Tenant $env:tenantId -SubscriptionId $env:subscriptionId -FederatedToken $env:idToken
-          # run your azure powershell cmdlets
-          # ...
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Build and push image
         uses: azure/docker-login@v1
