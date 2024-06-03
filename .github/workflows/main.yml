@@ -15,25 +15,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout GitHub Action
-      uses: actions/checkout@v3
+      - name: Checkout GitHub Action
+        uses: actions/checkout@v3
 
-    - name: Login via Azure CLI
-      # uses: azure/login@v1
-      uses: Azure/login@v2.1.1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: Login via Azure CLI
+      #   # uses: azure/login@v1
+      #   uses: Azure/login@v2.1.1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Build and push image
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: GetFederatedToken
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const idToken = await core.getIDToken('api://AzureADTokenExchange')
+            core.exportVariable('idToken', idToken)
 
-    - run: |
-        docker build web-spa/. -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}
+      - name: OIDCLoginAndRunAzurePowerShell
+        shell: pwsh
+        env:
+          tenantId: ${{ secrets.TENANT_ID }}
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          clientId: ${{ secrets.CLIENT_ID }}
+        run: |
+          Connect-AzAccount -ServicePrincipal -ApplicationId $env:clientId -Tenant $env:tenantId -SubscriptionId $env:subscriptionId -FederatedToken $env:idToken
+          # run your azure powershell cmdlets
+          # ...
+
+      - name: Build and push image
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - run: |
+          docker build web-spa/. -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,24 +59,24 @@ jobs:
     needs: build
 
     steps:
-    - name: Login via Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true
+      - name: Login via Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
 
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
 
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: "${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}"
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: "${{ secrets.REGISTRY_LOGIN_SERVER }}/westoverchurch-main-web:main-${{ github.run_id }}"
 
-    - name: Run Azure PowerShell script
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          az webapp restart --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
-        azPSVersion: "latest"
+      - name: Run Azure PowerShell script
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            az webapp restart --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+          azPSVersion: "latest"
