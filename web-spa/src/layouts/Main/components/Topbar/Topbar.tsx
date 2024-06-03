@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+// import Link from 'next/link';
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,24 +19,15 @@ import { SiteMapItem } from 'types/navigation/siteMapItem';
 interface Props {
   // eslint-disable-next-line @typescript-eslint/ban-types
   onSidebarOpen: () => void;
-  pages: {
-    landings: Array<PageItem>;
-    company: Array<PageItem>;
-    account: Array<PageItem>;
-    secondary: Array<PageItem>;
-    blog: Array<PageItem>;
-    portfolio: Array<PageItem>;
-  };
   colorInvert?: boolean;
 }
 
-const Topbar = ({ onSidebarOpen, colorInvert = false }: Props): JSX.Element => {
+const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { siteMap } = useSelector((state: RootState) => state.navigation);
 
   const theme = useTheme();
-  const { mode } = theme.palette;
 
   useEffect(() => {
     dispatch(fetchSiteMap('MainSite'));
@@ -50,18 +41,16 @@ const Topbar = ({ onSidebarOpen, colorInvert = false }: Props): JSX.Element => {
       width={1}
     >
       <Box
-        sx={{ display: { xs: 'flex', md: 'none' } }}
+        sx={{ display: { xs: 'flex', md: 'flex' } }}
         component="a"
         href="/"
-        title="theFront"
+        title="Westover Church"
         width={{ xs: 100, md: 120 }}
       >
         <Box
           component={'img'}
           src={
-            mode === 'light' && !colorInvert
-              ? 'https://westovercontent.blob.core.windows.net/cmscontent/assets/westover_icon.png'
-              : 'https://westovercontent.blob.core.windows.net/cmscontent/assets/westover_icon.png'
+            'https://westovercontent.blob.core.windows.net/cmscontent/assets/westover_icon_white.png'
           }
           height={52}
           width={50}
@@ -69,52 +58,20 @@ const Topbar = ({ onSidebarOpen, colorInvert = false }: Props): JSX.Element => {
       </Box>
       {siteMap && (
         <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-          {siteMap.slice(0, 4).map((item: SiteMapItem, key: number) => (
+          {siteMap.slice(0, 7).map((item: SiteMapItem, key: number) => (
             <Box key={key} marginLeft={4}>
               <NavItem
                 title={item.title}
                 id={`mainMenu-${item.id}`}
                 item={item}
                 items={item.items}
-                colorInvert={colorInvert}
+                colorInvert={true}
               />
             </Box>
           ))}
         </Box>
       )}
-      <Box
-        sx={{ display: { xs: 'none', md: 'flex' } }}
-        width={{ xs: 100, md: 120 }}
-      >
-        <Link href="/">
-          <Box
-            component={'img'}
-            src={
-              mode === 'light' && !colorInvert
-                ? 'https://westovercontent.blob.core.windows.net/cmscontent/assets/westover_icon.png'
-                : 'https://westovercontent.blob.core.windows.net/cmscontent/assets/westover_icon.png'
-            }
-            height={52}
-            width={50}
-          />
-        </Link>
-      </Box>
-      {siteMap && (
-        <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-          {siteMap.slice(4, 76).map((item: SiteMapItem, key: number) => (
-            <Box key={key} marginLeft={4}>
-              <NavItem
-                title={item.title}
-                id={`mainMenu-${item.id}`}
-                item={item}
-                items={item.items}
-                colorInvert={colorInvert}
-              />
-            </Box>
-          ))}
-        </Box>
-      )}
-      <Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
+      <Box sx={{ display: 'flex' }} alignItems={'right'}>
         <Button
           onClick={() => onSidebarOpen()}
           aria-label="Menu"
@@ -123,7 +80,11 @@ const Topbar = ({ onSidebarOpen, colorInvert = false }: Props): JSX.Element => {
             borderRadius: 2,
             minWidth: 'auto',
             padding: 1,
-            borderColor: alpha(theme.palette.divider, 0.2),
+            borderColor: alpha(theme.palette.divider, 0.0),
+            color: 'rgba(255,255,255,1)',
+            '&:hover': {
+              borderColor: 'rgba(255,255,255,1)',
+            },
           }}
         >
           <MenuIcon />
