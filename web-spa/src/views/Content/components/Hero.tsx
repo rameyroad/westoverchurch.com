@@ -67,8 +67,21 @@ export const Hero = ({ page }: Props): JSX.Element => {
           zIndex: 1,
         }}
       />
-      {page?.excerpt && (
-        <Container position={'relative'} zIndex={2}>
+      <Container position={'relative'} zIndex={2}>
+        {page.showTitle && (
+          <Typography
+            variant="h2"
+            gutterBottom
+            sx={{
+              fontWeight: 900,
+              color: 'common.white',
+              textTransform: 'uppercase',
+            }}
+          >
+            {page?.title}
+          </Typography>
+        )}
+        {page.showExcerpt && page?.excerpt && (
           <Box
             sx={{
               borderRadius: 1,
@@ -90,8 +103,8 @@ export const Hero = ({ page }: Props): JSX.Element => {
               {page.excerpt}
             </Typography>
           </Box>
-        </Container>
-      )}
+        )}
+      </Container>
     </Box>
   );
 };
