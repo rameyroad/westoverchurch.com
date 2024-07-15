@@ -30,7 +30,7 @@ export const Hero = ({ page }: Props): JSX.Element => {
       data-jarallax
       data-speed="0.2"
       position={'relative'}
-      minHeight={{ xs: 300, sm: 400, md: 500 }}
+      minHeight={{ xs: 300, sm: 400, md: 650 }}
       display={'flex'}
       alignItems={'center'}
       paddingTop={13}
@@ -39,18 +39,9 @@ export const Hero = ({ page }: Props): JSX.Element => {
       <Box
         className={'jarallax-img'}
         sx={{
-          position: 'absolute',
-          objectFit: 'cover',
-          /* support for plugin https://github.com/bfred-it/object-fit-images */
-          fontFamily: 'object-fit: cover;',
-          top: 0,
-          left: 0,
           width: '100%',
-          height: '100%',
-          zIndex: -1,
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
+          backgroundPosition: 'bottom',
           backgroundImage: `url('${page?.primaryImage?.media?.publicUrl}')`,
         }}
       />
@@ -68,25 +59,23 @@ export const Hero = ({ page }: Props): JSX.Element => {
         }}
       />
       <Container position={'relative'} zIndex={2}>
-        <Box>
-          <Typography
-            variant="h2"
-            gutterBottom
-            sx={{
-              fontWeight: 900,
-              color: 'common.white',
-              textTransform: 'uppercase',
-            }}
-          >
-            {page?.title}
-          </Typography>
+        <Box
+          sx={{
+            borderRadius: 1,
+            backgroundColor: 'rgba(255,255,255,0.5)',
+            width: '70%',
+            px: 2,
+            py: 1,
+            mt: 5,
+          }}
+        >
           {page?.excerpt && (
             <Typography
-              variant="h6"
+              fontSize={{ xs: 20, sm: 22, md: 24 }}
+              fontWeight={600}
               component="p"
-              color="text.primary"
               sx={{
-                color: 'common.white',
+                color: '#3A474A',
               }}
             >
               {page.excerpt}

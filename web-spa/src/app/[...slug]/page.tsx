@@ -1,6 +1,6 @@
 'use client'; // This is a client component 👈🏽
 
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Content from 'views/Content';
 
 const ContentPage = ({ params }: { params: { slug: string } }): JSX.Element => {
@@ -12,11 +12,11 @@ const ContentPage = ({ params }: { params: { slug: string } }): JSX.Element => {
     }
   }, [params]);
 
-  useEffect(() => {
-    console.log('pageSlug', pageSlug);
-  }, [pageSlug]);
+  useEffect(() => {}, [pageSlug]);
 
-  return <>{pageSlug != '' && <Content pageName={pageSlug} />}</>;
+  return (
+    <Fragment>{pageSlug != '' && <Content pageName={pageSlug} />}</Fragment>
+  );
 };
 
 export default ContentPage;
