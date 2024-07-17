@@ -85,7 +85,7 @@ export const Hero = ({ page }: Props): JSX.Element => {
           <Box
             sx={{
               borderRadius: 1,
-              backgroundColor: 'rgba(255,255,255,0.5)',
+              backgroundColor: 'rgba(255,255,255,0.75)',
               width: '70%',
               px: 2,
               py: 3,
