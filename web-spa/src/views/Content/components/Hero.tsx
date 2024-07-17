@@ -49,8 +49,8 @@ export const Hero = ({ page }: Props): JSX.Element => {
           height: '100%',
           zIndex: -1,
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
+          backgroundSize: 'contain',
+          backgroundPosition: 'top center',
           backgroundImage: `url('${page?.primaryImage?.media?.publicUrl}')`,
         }}
       />
