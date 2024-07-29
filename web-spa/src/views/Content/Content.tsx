@@ -97,7 +97,7 @@ const Content = ({ pageName }: Props): JSX.Element => {
       {activePage?.primaryImage?.media?.publicUrl != null && (
         <Hero page={activePage as DynamicPage} />
       )}
-      <Container>{!isLoading && renderBlockContent()}</Container>
+      {!isLoading && renderBlockContent()}
     </Main>
   );
 };

@@ -1,4 +1,5 @@
-﻿import React from 'react';
+﻿import { Box, Container } from '@mui/material';
+import React from 'react';
 import { Block } from 'types/dynamicPage';
 
 export interface BlockProps {
@@ -7,14 +8,18 @@ export interface BlockProps {
 
 export const HtmlBlock: React.FC<BlockProps> = ({ block }) => {
   return (
-    <div className="block html-block">
-      <div className="container">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: block?.body?.value ?? '',
-          }}
-        />
-      </div>
-    </div>
+    <Box>
+      <Container>
+        <div className="block html-block">
+          <div className="container">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: block?.body?.value ?? '',
+              }}
+            />
+          </div>
+        </div>
+      </Container>
+    </Box>
   );
 };
