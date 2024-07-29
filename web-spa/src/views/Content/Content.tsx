@@ -3,7 +3,6 @@ import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 
 import Main from 'layouts/Main';
-import Container from 'components/Container';
 
 import { getPageBySlug } from 'services/contentApi';
 import {
