@@ -8,7 +8,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { SidebarNav } from './components';
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   onClose: () => void;
   open: boolean;
   variant: 'permanent' | 'persistent' | 'temporary' | undefined;

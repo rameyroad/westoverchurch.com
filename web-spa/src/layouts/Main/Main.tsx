@@ -4,9 +4,8 @@ import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
-import Container from 'components/Container';
-
 import { Topbar, Sidebar, Footer } from './components';
+import Container from '@/components/Container';
 
 interface Props {
   children: React.ReactNode;

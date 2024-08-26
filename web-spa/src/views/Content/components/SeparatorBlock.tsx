@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider } from '@mui/material';
-import { Block } from 'types/dynamicPage';
+import { Block } from '@/types/dynamicPage';
 
 export interface BlockProps {
   block: Block;

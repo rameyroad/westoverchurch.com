@@ -1,6 +1,6 @@
+import { getSiteMap } from '@/services/contentApi';
+import { SiteMapItem } from '@/types/navigation/siteMapItem';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getSiteMap } from 'services/contentApi';
-import { SiteMapItem } from 'types/navigation/siteMapItem';
 
 // First, create the thunk
 export const fetchSiteMap = createAsyncThunk(

@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from 'layouts/Main';
-import Container from 'components/Container';
+import Main from '@/layouts/Main';
+import Container from '@/components/Container';
 
 const ServerError = (): JSX.Element => {
   return (

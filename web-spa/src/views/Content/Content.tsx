@@ -2,9 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 
-import Main from 'layouts/Main';
-
-import { getPageBySlug } from 'services/contentApi';
 import {
   Hero,
   HtmlBlock,
@@ -15,7 +12,9 @@ import {
   QuoteBlock,
 } from './components';
 import { Typography } from '@mui/material';
-import { Block, DynamicPage } from 'types/dynamicPage';
+import { getPageBySlug } from '@/services/contentApi';
+import { Block, DynamicPage } from '@/types/dynamicPage';
+import Main from '@/layouts/Main';
 
 interface Props {
   pageName: string;

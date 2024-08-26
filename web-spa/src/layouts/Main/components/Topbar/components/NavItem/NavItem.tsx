@@ -6,8 +6,7 @@ import { Box, Grid, Popover, Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-import { SiteMapItem } from 'types/navigation/siteMapItem';
+import { SiteMapItem } from '@/types/navigation/siteMapItem';
 
 interface Props {
   title: string;
@@ -29,7 +28,7 @@ const NavItem = ({
   const [anchorEl, setAnchorEl] = useState(null);
   const [openedPopoverId, setOpenedPopoverId] = useState(null);
 
-  const handleClick = (event, popoverId) => {
+  const handleClick = (event: any, popoverId: any) => {
     setAnchorEl(event.target);
     setOpenedPopoverId(popoverId);
   };

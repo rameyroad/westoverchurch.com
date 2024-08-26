@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import { ItemHtmlBlock, ItemImageBlock, ItemPageBlock, QuoteBlock } from '.';
 import { Box, Container, Grid } from '@mui/material';
-import { Block, Item } from 'types/dynamicPage';
+import { Block, Item } from '@/types/dynamicPage';
 
 export interface BlockProps {
   block: Block;

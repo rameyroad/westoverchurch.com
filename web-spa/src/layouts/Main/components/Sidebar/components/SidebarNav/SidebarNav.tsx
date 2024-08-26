@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 
 // import NavItem from './components/NavItem';
-import { RootState } from 'store';
 // import { SiteMapItem } from 'types/navigation/siteMapItem';
 import { Button, Grid, Typography } from '@mui/material';
 import Link from 'next/link';
+import { RootState } from '@/store';
 // import Link from 'next/link';
 
 const SideNavItem = ({ title, targetUrl }: any) => {

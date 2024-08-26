@@ -5,9 +5,8 @@ import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
-import Main from 'layouts/Main';
-import Container from 'components/Container';
+import Main from '@/layouts/Main';
+import Container from '@/components/Container';
 
 const NotFoundCover = (): JSX.Element => {
   const theme = useTheme();

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
-
-import Container from 'components/Container';
-import { DynamicPage } from 'types/dynamicPage';
+import Container from '@/components/Container';
+import { DynamicPage } from '@/types/dynamicPage';
 
 interface Props {
   page: DynamicPage;
@@ -11,17 +10,15 @@ interface Props {
 
 export const Hero = ({ page }: Props): JSX.Element => {
   useEffect(() => {
-    const jarallaxInit = async () => {
-      const jarallaxElems = document.querySelectorAll('.jarallax');
-      if (!jarallaxElems || (jarallaxElems && jarallaxElems.length === 0)) {
-        return;
-      }
-
-      const { jarallax } = await import('jarallax');
-      jarallax(jarallaxElems, { speed: 0.2 });
-    };
-
-    jarallaxInit();
+    // const jarallaxInit = async () => {
+    //   const jarallaxElems = document.querySelectorAll('.jarallax');
+    //   if (!jarallaxElems || (jarallaxElems && jarallaxElems.length === 0)) {
+    //     return;
+    //   }
+    //   const { jarallax } = await import('jarallax');
+    //   jarallax(jarallaxElems, { speed: 0.2 });
+    // };
+    // jarallaxInit();
   });
 
   return (

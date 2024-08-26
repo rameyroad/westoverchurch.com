@@ -11,13 +11,11 @@ import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { NavItem } from './components';
-
-import { AppDispatch, RootState } from 'store';
-import { fetchSiteMap } from 'store/Navigation/NavSlice';
-import { SiteMapItem } from 'types/navigation/siteMapItem';
+import { fetchSiteMap } from '@/store/Navigation/NavSlice';
+import { AppDispatch, RootState } from '@/store';
+import { SiteMapItem } from '@/types/navigation/siteMapItem';
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   onSidebarOpen: () => void;
   colorInvert?: boolean;
 }

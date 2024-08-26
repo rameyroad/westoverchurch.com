@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 
 import { Box, Container } from '@mui/material';
-import { Block } from 'types/dynamicPage';
+import { Block } from '@/types/dynamicPage';
 
 export interface BlockProps {
   block: Block;

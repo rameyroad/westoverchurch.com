@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Typography } from '@mui/material';
-import { Block, Item } from 'types/dynamicPage';
+import { Block, Item } from '@/types/dynamicPage';
 
 export interface QuoteBlockProps {
   block?: Block;
