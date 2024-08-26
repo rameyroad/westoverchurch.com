@@ -55,7 +55,7 @@ const Main = ({
         </Container>
       </AppBar>
       <Sidebar onClose={handleSidebarClose} open={open} variant="temporary" />
-      <Box>{children}</Box>
+      <Box sx={{ minHeight: 'calc(100vh - 350px)' }}>{children}</Box>
       <Footer />
     </Box>
   );
