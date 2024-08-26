@@ -55,13 +55,8 @@ const Main = ({
         </Container>
       </AppBar>
       <Sidebar onClose={handleSidebarClose} open={open} variant="temporary" />
-      <main>
-        {children}
-        <Divider />
-      </main>
-      <Container paddingY={4}>
-        <Footer />
-      </Container>
+      <Box>{children}</Box>
+      <Footer />
     </Box>
   );
 };
