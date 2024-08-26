@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Box from '@mui/material/Box';
 
 import {
   Hero,
@@ -11,7 +10,7 @@ import {
   SeparatorBlock,
   QuoteBlock,
 } from './components';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { getPageBySlug } from '@/services/contentApi';
 import { Block, DynamicPage } from '@/types/dynamicPage';
 import Main from '@/layouts/Main';
@@ -91,12 +90,12 @@ const Content = ({ pageName }: Props): JSX.Element => {
   };
 
   return (
-    <Main>
+    <Box>
       {activePage?.primaryImage?.media?.publicUrl != null && (
         <Hero page={activePage as DynamicPage} />
       )}
       {!isLoading && renderBlockContent()}
-    </Main>
+    </Box>
   );
 };
 
