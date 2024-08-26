@@ -80,8 +80,12 @@ const SidebarNavGroup = ({ title }: any) => {
     <Fragment>
       <Typography variant="h3">{title}</Typography>
       <Box sx={{ ml: 3, mb: 5 }}>
-        {items.map((item: any) => (
-          <SideNavItem title={item.title} targetUrl={item.permaLink} />
+        {items.map((item: any, index: number) => (
+          <SideNavItem
+            key={index}
+            title={item.title}
+            targetUrl={item.permaLink}
+          />
         ))}
       </Box>
     </Fragment>
