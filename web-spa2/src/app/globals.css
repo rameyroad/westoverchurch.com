@@ -1,0 +1,20 @@
+a.nav-item {
+  text-decoration: none !important;
+  color: rgb(0, 0, 238);
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+
+  &:visited,
+  &:active {
+    text-decoration: none !important;
+  }
+}
+
+header,
+#sidebar {
+  a.nav-item {
+    color: rgb(255, 255, 255);
+  }
+}
