@@ -30,30 +30,17 @@ export const Hero = ({ page }: Props): JSX.Element => {
       data-jarallax
       data-speed="0.2"
       position={'relative'}
-      minHeight={{ xs: 300, sm: 400, md: 500 }}
+      height={{ xs: 200, sm: 325, md: 500 }}
       display={'flex'}
       alignItems={'center'}
       paddingTop={13}
-      id="agency__portfolio-item--js-scroll"
+      sx={{
+        backgroundPosition: 'bottom center',
+        backgroundSize: 'cover',
+        backgroundImage: `url('${page?.primaryImage?.media?.publicUrl}')`,
+        backgroundRepeat: 'no-repeat',
+      }}
     >
-      <Box
-        className={'jarallax-img'}
-        sx={{
-          position: 'absolute',
-          objectFit: 'cover',
-          /* support for plugin https://github.com/bfred-it/object-fit-images */
-          fontFamily: 'object-fit: cover;',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: -1,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'contain',
-          backgroundPosition: 'top center',
-          backgroundImage: `url('${page?.primaryImage?.media?.publicUrl}')`,
-        }}
-      />
       <Box
         sx={{
           position: 'absolute',
