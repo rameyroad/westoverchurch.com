@@ -26,16 +26,13 @@ export const Hero = ({ page }: Props): JSX.Element => {
 
   return (
     <Box
-      className={'jarallax'}
-      data-jarallax
-      data-speed="0.2"
       position={'relative'}
-      height={{ xs: 200, sm: 325, md: 500 }}
+      height={{ xs: 300, sm: 400, md: 500, lg: 600, xl: 700 }}
       display={'flex'}
       alignItems={'center'}
       paddingTop={13}
       sx={{
-        backgroundPosition: 'bottom center',
+        backgroundPosition: 'bottom right',
         backgroundSize: 'cover',
         backgroundImage: `url('${page?.primaryImage?.media?.publicUrl}')`,
         backgroundRepeat: 'no-repeat',
