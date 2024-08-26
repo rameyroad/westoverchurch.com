@@ -1,15 +1,8 @@
 'use client';
 
-import {
-  Box,
-  Container,
-  List,
-  ListItem,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Container, List, ListItem, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const ElderCovenant = (): JSX.Element => {
   return (
