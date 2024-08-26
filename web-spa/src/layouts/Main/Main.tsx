@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
@@ -22,8 +21,6 @@ const Main = ({
   bgcolor = 'rgba(39, 57, 66, .85)',
   bgcolor2 = 'rgba(39, 57, 66, .9)',
 }: Props): JSX.Element => {
-  const theme = useTheme();
-
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleSidebarOpen = (): void => {
