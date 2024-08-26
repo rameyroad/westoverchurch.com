@@ -13,12 +13,14 @@ interface Props {
   children: React.ReactNode;
   colorInvert?: boolean;
   bgcolor?: string;
+  bgcolor2?: string;
 }
 
 const Main = ({
   children,
   colorInvert = false,
-  bgcolor = 'rgba(39, 57, 66, 0.9)',
+  bgcolor = 'rgba(39, 57, 66, .85)',
+  bgcolor2 = 'rgba(39, 57, 66, .9)',
 }: Props): JSX.Element => {
   const theme = useTheme();
 
@@ -45,7 +47,7 @@ const Main = ({
         position={'sticky'}
         sx={{
           top: 0,
-          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+          backgroundColor: trigger ? bgcolor2 : bgcolor,
         }}
         elevation={trigger ? 1 : 0}
       >

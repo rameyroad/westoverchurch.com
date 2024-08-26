@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
@@ -7,23 +7,25 @@ import Box from '@mui/material/Box';
 import { RootState } from 'store';
 // import { SiteMapItem } from 'types/navigation/siteMapItem';
 import { Button, Grid, Typography } from '@mui/material';
+import Link from 'next/link';
 // import Link from 'next/link';
 
 const SideNavItem = ({ title, targetUrl }: any) => {
   return (
-    <Button
-      size={'large'}
-      component={'a'}
-      href={targetUrl}
-      fullWidth
-      sx={{
-        justifyContent: 'flex-start',
-      }}
-    >
-      <Typography fontSize={22} color={'common.white'}>
-        {title}
-      </Typography>
-    </Button>
+    <Link href={targetUrl} passHref>
+      <Button
+        size={'large'}
+        component={'a'}
+        fullWidth
+        sx={{
+          justifyContent: 'flex-start',
+        }}
+      >
+        <Typography fontSize={22} color={'common.white'}>
+          {title}
+        </Typography>
+      </Button>
+    </Link>
   );
 };
 
@@ -58,6 +60,34 @@ const SideNavButton = ({ title, targetUrl }: any) => {
   );
 };
 
+const SidebarNavGroup = ({ title }: any) => {
+  const { siteMap } = useSelector((state: RootState) => state.navigation);
+
+  const [items, setItems] = useState<any[]>([]);
+
+  useEffect(() => {}, [items]);
+
+  useEffect(() => {
+    if (siteMap) {
+      const group = siteMap.find((item) => item.title === title);
+      if (group) {
+        setItems(group.items);
+      }
+    }
+  }, [siteMap]);
+
+  return (
+    <Fragment>
+      <Typography variant="h3">{title}</Typography>
+      <Box sx={{ ml: 3, mb: 5 }}>
+        {items.map((item: any) => (
+          <SideNavItem title={item.title} targetUrl={item.permaLink} />
+        ))}
+      </Box>
+    </Fragment>
+  );
+};
+
 const SidebarNav = (): JSX.Element => {
   const { siteMap } = useSelector((state: RootState) => state.navigation);
 
@@ -67,9 +97,7 @@ const SidebarNav = (): JSX.Element => {
     <Box
       sx={{
         position: 'relative',
-        overflow: 'hidden',
       }}
-      width={'95vw'}
     >
       {/* Background Image */}
       <Box
@@ -82,7 +110,7 @@ const SidebarNav = (): JSX.Element => {
           backgroundImage:
             'url(https://westovercontent.blob.core.windows.net/cmscontent/assets/westover_icon_white.png)',
           backgroundSize: 'contain',
-          backgroundPosition: 'right',
+          backgroundPosition: 'top right',
           backgroundRepeat: 'no-repeat',
           opacity: 0.05,
           zIndex: 1,
@@ -111,139 +139,26 @@ const SidebarNav = (): JSX.Element => {
         </Box>
         <Box sx={{ m: 5 }}>
           <Grid container>
-            <Grid item sm={12} md={8}>
+            <Grid item sm={12} md={8} lg={9}>
               <Grid container>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Typography variant="h3">About</Typography>
-                  <Box sx={{ ml: 3, mb: 5 }}>
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                  </Box>
+                <Grid item sm={12} md={6} lg={4}>
+                  <SidebarNavGroup title="About Us" />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Typography variant="h3">Resources</Typography>
-                  <Box sx={{ ml: 3, mb: 5 }}>
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                  </Box>
+                <Grid item sm={12} md={6} lg={4}>
+                  <SidebarNavGroup title="Resources" />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Typography variant="h3">Gathered</Typography>
-                  <Box sx={{ ml: 3, mb: 5 }}>
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                  </Box>
+                <Grid item sm={12} md={6} lg={4}>
+                  <SidebarNavGroup title="Gathered" />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Typography variant="h3">Scattered</Typography>
-                  <Box sx={{ ml: 3, mb: 5 }}>
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                  </Box>
+                <Grid item sm={12} md={6} lg={4}>
+                  <SidebarNavGroup title="Scatter" />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Typography variant="h3">Ministries</Typography>
-                  <Box sx={{ ml: 3, mb: 5 }}>
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                    <SideNavItem
-                      title="Lorem Ipsum"
-                      targetUrl="/#lorem-ipsum"
-                    />
-                  </Box>
+                <Grid item sm={12} md={6} lg={4}>
+                  <SidebarNavGroup title="Ministries" />
                 </Grid>
               </Grid>
             </Grid>
-            <Grid
-              item
-              sm={12}
-              md={4}
-              sx={{
-                textAlign: 'right',
-              }}
-            >
+            <Grid item sm={12} md={4} lg={3}>
               <SideNavButton title="Plan a Visit" targetUrl="/#lorem-ipsum" />
               <SideNavButton title="My Westover" targetUrl="/#lorem-ipsum" />
               <SideNavButton title="Give Online" targetUrl="/#lorem-ipsum" />

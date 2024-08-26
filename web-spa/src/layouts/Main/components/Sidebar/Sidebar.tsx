@@ -32,8 +32,9 @@ const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
         sx={{
           backgroundColor: 'rgba(96, 119, 132, 1)',
           color: 'common.white',
-          height: '100%',
+          minHeight: '100vh',
           width: '100vw',
+          overflow: 'auto',
           padding: 1,
         }}
       >
@@ -44,11 +45,8 @@ const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
           width={1}
         >
           <Box display={'flex'} alignItems={'top'}>
-            <Box flex={1}>
-              <SidebarNav />
-              {/* Contents of the left box */}
-            </Box>
-            <Box width={50} alignItems={'right'}>
+            <SidebarNav />
+            <Box position="absolute" top={0} right={0}>
               <Button
                 onClick={() => onClose()}
                 aria-label="Menu"
@@ -65,11 +63,11 @@ const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
                     transform: 'rotate(90deg)',
                     transition: 'transform 0.3s ease 0s',
                   },
+                  zIndex: 100,
                 }}
               >
                 <CloseIcon fontSize="large" />
               </Button>
-              {/* Contents of the right box */}
             </Box>
           </Box>
         </Box>
