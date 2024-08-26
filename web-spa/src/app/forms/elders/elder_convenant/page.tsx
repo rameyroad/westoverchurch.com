@@ -2,7 +2,6 @@
 
 import { Container, List, ListItem, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
-import React from 'react';
 
 const ElderCovenant = (): JSX.Element => {
   return (
@@ -11,7 +10,7 @@ const ElderCovenant = (): JSX.Element => {
         <Typography variant="h3" sx={{ fontWeight: 900 }}>
           Elder Covenant
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400 }}>
+        <Typography variant="body1" sx={{ fontWeight: 400 }} component={'div'}>
           As the clerk of the board, I invite you to affirm and sign the Elder
           Covenant for 2025. This year, we’re finally getting a little more
           high-tech by allowing you to review the covenant and sign it online.
@@ -20,17 +19,17 @@ const ElderCovenant = (): JSX.Element => {
           script type face for your signature. The date will be automatically
           set to today’s date. Many thanks for affirming the covenant.
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400 }}>
+        <Typography variant="body1" sx={{ fontWeight: 400 }} component={'div'}>
           In His name,
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400 }}>
+        <Typography variant="body1" sx={{ fontWeight: 400 }} component={'div'}>
           Bruce Nichelson Clerk of the Board
         </Typography>
 
         <Typography variant="h3" sx={{ fontWeight: 900 }}>
           Westover Elder Covenant
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400 }}>
+        <Typography variant="body1" sx={{ fontWeight: 400 }} component={'div'}>
           <Link
             href="https://www.biblegateway.com/passage/?search=1%20Timothy%203%3A1-7&version=ESV"
             target="_blank"
@@ -51,7 +50,7 @@ const ElderCovenant = (): JSX.Element => {
           outsiders, so that he will not fall into disgrace and into the devil’s
           trap.
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400 }}>
+        <Typography variant="body1" sx={{ fontWeight: 400 }} component={'div'}>
           <Link
             href="https://www.biblegateway.com/passage/?search=Titus%201%3A5-9&version=ESV"
             target="_blank"
@@ -71,30 +70,26 @@ const ElderCovenant = (): JSX.Element => {
           message as it has been taught, so that he can encourage others by
           sound doctrine and refute those who oppose it.
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 600 }}>
+        <Typography variant="body1" sx={{ fontWeight: 600 }} component={'div'}>
           Per Article IV Section 2 in the Constitution, I have read and
           understand the qualifications for elder as outlined in the above
           scriptures 1 Timothy 3:1-7 and Titus 1:5-9. As an elder of Westover
           Church, I agree to:
-          <List>
-            <ListItem>
-              wholeheartedly accept the Articles of Faith as contained in the
+          <ul>
+            <li>
+              Wholeheartedly accept the Articles of Faith as contained in the
               Constitution
-            </ListItem>
-            <ListItem>
-              be exemplary in my general Christian conduct, and
-            </ListItem>
-            <ListItem>
-              be devoted in myattendance and service to Westover Church.
-            </ListItem>
-          </List>
+            </li>
+            <li>Be exemplary in my general Christian conduct, and</li>
+            <li>Be devoted in myattendance and service to Westover Church.</li>
+          </ul>
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 600 }}>
+        <Typography variant="body1" sx={{ fontWeight: 600 }} component={'div'}>
           By signing below, I understand that a qualification to be an elder
           (ruling or non-ruling) is contingent upon the annual renewal of this
           covenant.
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 600 }}>
+        <Typography variant="body1" sx={{ fontWeight: 600 }} component={'div'}>
           Please type your name in the box below:
         </Typography>
       </Stack>
