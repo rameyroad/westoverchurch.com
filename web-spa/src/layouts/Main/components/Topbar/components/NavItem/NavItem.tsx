@@ -96,59 +96,61 @@ const NavItem = ({
           </Box>
         )}
       </Box>
-      <Popover
-        elevation={3}
-        id={id}
-        open={openedPopoverId === id}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        sx={{
-          '.MuiPaper-root': {
-            maxWidth: items?.length > 12 ? 350 : 250,
-            padding: 2,
-            marginTop: 2,
-            borderTopRightRadius: 0,
-            borderTopLeftRadius: 0,
-            borderBottomRightRadius: 8,
-            borderBottomLeftRadius: 8,
-            borderTop: `3px solid ${theme.palette.primary.main}`,
-          },
-        }}
-      >
-        <Grid container spacing={0.5}>
-          {items?.map((item, i) => (
-            <Grid item key={i} xs={items?.length > 12 ? 6 : 12}>
-              <Box
-                sx={{
-                  minHeight: 32,
-                  justifyContent: 'flex-start',
-                  color:
-                    activeLink === item.permaLink
-                      ? theme.palette.primary.main
-                      : theme.palette.text.primary,
-                  backgroundColor:
-                    activeLink === item.permaLink
-                      ? alpha(theme.palette.primary.main, 0.1)
-                      : 'transparent',
-                  fontWeight: activeLink === item.permaLink ? 600 : 400,
-                }}
-              >
-                <Link href={'/' + item.permaLink} className="nav-item">
-                  {item.title}
-                </Link>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Popover>
+      {items?.length > 0 && (
+        <Popover
+          elevation={3}
+          id={id}
+          open={openedPopoverId === id}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          sx={{
+            '.MuiPaper-root': {
+              maxWidth: items?.length > 12 ? 350 : 250,
+              padding: 2,
+              marginTop: 2,
+              borderTopRightRadius: 0,
+              borderTopLeftRadius: 0,
+              borderBottomRightRadius: 8,
+              borderBottomLeftRadius: 8,
+              borderTop: `3px solid ${theme.palette.primary.main}`,
+            },
+          }}
+        >
+          <Grid container spacing={0.5}>
+            {items?.map((item, i) => (
+              <Grid item key={i} xs={items?.length > 12 ? 6 : 12}>
+                <Box
+                  sx={{
+                    minHeight: 32,
+                    justifyContent: 'flex-start',
+                    color:
+                      activeLink === item.permaLink
+                        ? theme.palette.primary.main
+                        : theme.palette.text.primary,
+                    backgroundColor:
+                      activeLink === item.permaLink
+                        ? alpha(theme.palette.primary.main, 0.1)
+                        : 'transparent',
+                    fontWeight: activeLink === item.permaLink ? 600 : 400,
+                  }}
+                >
+                  <Link href={'/' + item.permaLink} className="nav-item">
+                    {item.title}
+                  </Link>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Popover>
+      )}
     </Box>
   );
 };

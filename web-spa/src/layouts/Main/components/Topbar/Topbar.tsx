@@ -56,7 +56,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
       </Box>
       {siteMap && (
         <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-          {siteMap.slice(0, 7).map((item: SiteMapItem, key: number) => (
+          {siteMap.map((item: SiteMapItem, key: number) => (
             <Box key={key} marginLeft={4}>
               <NavItem
                 title={item.title}
