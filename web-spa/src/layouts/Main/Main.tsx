@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
@@ -13,15 +12,15 @@ interface Props {
   children: React.ReactNode;
   colorInvert?: boolean;
   bgcolor?: string;
+  bgcolor2?: string;
 }
 
 const Main = ({
   children,
   colorInvert = false,
-  bgcolor = 'rgba(39, 57, 66, 0.9)',
+  bgcolor = 'rgba(39, 57, 66, .85)',
+  bgcolor2 = 'rgba(39, 57, 66, .9)',
 }: Props): JSX.Element => {
-  const theme = useTheme();
-
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleSidebarOpen = (): void => {
@@ -45,7 +44,7 @@ const Main = ({
         position={'sticky'}
         sx={{
           top: 0,
-          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+          backgroundColor: trigger ? bgcolor2 : bgcolor,
         }}
         elevation={trigger ? 1 : 0}
       >
