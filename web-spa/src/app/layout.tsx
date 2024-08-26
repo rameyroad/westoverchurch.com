@@ -12,7 +12,9 @@ export const metadata: Metadata = {
     'A church that gathers to grow in faith in order to scatter across the nations to spread the gospel',
 };
 
-export default function RootLayout({ children }: Readonly) {
+import { ReactNode } from 'react';
+
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <head>
