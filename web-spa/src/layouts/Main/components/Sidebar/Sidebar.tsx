@@ -15,17 +15,7 @@ interface Props {
 
 const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
   return (
-    <Drawer
-      // anchor="left"
-      onClose={() => onClose()}
-      open={open}
-      variant={variant}
-      // sx={{
-      //   '& .MuiPaper-root': {
-      //     width: '100%',
-      //   },
-      // }}
-    >
+    <Drawer onClose={() => onClose()} open={open} variant={variant}>
       <Box
         id="sidebar"
         sx={{
@@ -44,7 +34,7 @@ const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
           width={1}
         >
           <Box display={'flex'} alignItems={'top'}>
-            <SidebarNav />
+            <SidebarNav onClose={onClose} />
             <Box position="absolute" top={0} right={0}>
               <Button
                 onClick={() => onClose()}

@@ -5,15 +5,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useRouter } from 'next/navigation';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { NavItem } from './components';
 import { fetchSiteMap } from '@/store/Navigation/NavSlice';
 import { AppDispatch, RootState } from '@/store';
 import { SiteMapItem } from '@/types/navigation/siteMapItem';
+import { Menu, MenuItem, SubMenu } from '@/@menu/horizontal-menu';
 
 interface Props {
   onSidebarOpen: () => void;
@@ -22,6 +24,7 @@ interface Props {
 
 const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   const { siteMap } = useSelector((state: RootState) => state.navigation);
 
@@ -54,21 +57,41 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
           width={50}
         />
       </Box>
-      {siteMap && (
-        <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-          {siteMap.map((item: SiteMapItem, key: number) => (
-            <Box key={key} marginLeft={4}>
-              <NavItem
-                title={item.title}
-                id={`mainMenu-${item.id}`}
-                item={item}
-                items={item.items}
-                colorInvert={true}
-              />
-            </Box>
-          ))}
-        </Box>
-      )}
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+        {siteMap && (
+          <Menu menuItemStyles={{ button: { paddingBlock: '12px' } }}>
+            {siteMap.map((item: SiteMapItem, key: number) => {
+              if (item.items.length > 0) {
+                return (
+                  <SubMenu key={key} label={item.title}>
+                    {item.items.map((subItem: SiteMapItem, subKey: number) => (
+                      <MenuItem
+                        key={subKey}
+                        onClick={() => {
+                          router.push(subItem.permaLink);
+                        }}
+                      >
+                        {subItem.title}
+                      </MenuItem>
+                    ))}
+                  </SubMenu>
+                );
+              } else {
+                return (
+                  <MenuItem
+                    key={key}
+                    onClick={() => {
+                      router.push(item.permaLink);
+                    }}
+                  >
+                    {item.title}
+                  </MenuItem>
+                );
+              }
+            })}
+          </Menu>
+        )}
+      </Box>
       <Box sx={{ display: 'flex' }} alignItems={'right'}>
         <Button
           onClick={() => onSidebarOpen()}

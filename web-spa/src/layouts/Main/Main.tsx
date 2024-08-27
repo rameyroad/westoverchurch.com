@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
@@ -27,6 +26,7 @@ const Main = ({
   };
 
   const handleSidebarClose = (): void => {
+    debugger;
     setOpenSidebar(false);
   };
 

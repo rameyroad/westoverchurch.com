@@ -55,7 +55,7 @@ const NavItem = ({
         aria-describedby={id}
         sx={{ cursor: 'pointer' }}
         onClick={(e) => handleClick(e, id)}
-        // onMouseEnter={(e) => handleClick(e, id)}
+        onMouseEnter={(e) => handleClick(e, id)}
       >
         {items?.length > 0 ? (
           <>

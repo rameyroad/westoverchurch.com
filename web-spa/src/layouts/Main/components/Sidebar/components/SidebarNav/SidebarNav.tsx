@@ -8,9 +8,12 @@ import Box from '@mui/material/Box';
 import { Button, Grid, Typography } from '@mui/material';
 import Link from 'next/link';
 import { RootState } from '@/store';
-// import Link from 'next/link';
 
-const SideNavItem = ({ title, targetUrl }: any) => {
+interface Props {
+  onClose: () => void;
+}
+
+const SideNavItem = ({ title, targetUrl, onClose }: any) => {
   return (
     <Link href={targetUrl} passHref>
       <Button
@@ -20,6 +23,7 @@ const SideNavItem = ({ title, targetUrl }: any) => {
         sx={{
           justifyContent: 'flex-start',
         }}
+        onClick={onClose}
       >
         <Typography fontSize={22} color={'common.white'}>
           {title}
@@ -29,7 +33,7 @@ const SideNavItem = ({ title, targetUrl }: any) => {
   );
 };
 
-const SideNavButton = ({ title, targetUrl }: any) => {
+const SideNavButton = ({ title, targetUrl, onClose }: any) => {
   return (
     <Box
       sx={{
@@ -51,6 +55,7 @@ const SideNavButton = ({ title, targetUrl }: any) => {
         sx={{
           justifyContent: 'center',
         }}
+        onClick={onClose}
       >
         <Typography variant="h4" fontSize={22} color={'common.white'}>
           {title}
@@ -60,7 +65,7 @@ const SideNavButton = ({ title, targetUrl }: any) => {
   );
 };
 
-const SidebarNavGroup = ({ title }: any) => {
+const SidebarNavGroup = ({ title, onClose }: any) => {
   const { siteMap } = useSelector((state: RootState) => state.navigation);
 
   const [items, setItems] = useState<any[]>([]);
@@ -85,6 +90,7 @@ const SidebarNavGroup = ({ title }: any) => {
             key={index}
             title={item.title}
             targetUrl={item.permaLink}
+            onClose={onClose}
           />
         ))}
       </Box>
@@ -92,7 +98,7 @@ const SidebarNavGroup = ({ title }: any) => {
   );
 };
 
-const SidebarNav = (): JSX.Element => {
+const SidebarNav = ({ onClose }: Props): JSX.Element => {
   const { siteMap } = useSelector((state: RootState) => state.navigation);
 
   useEffect(() => {}, [siteMap]);
@@ -146,26 +152,38 @@ const SidebarNav = (): JSX.Element => {
             <Grid item sm={12} md={8} lg={9}>
               <Grid container>
                 <Grid item sm={12} md={6} lg={4}>
-                  <SidebarNavGroup title="About Us" />
+                  <SidebarNavGroup title="About Us" onClose={onClose} />
                 </Grid>
                 <Grid item sm={12} md={6} lg={4}>
-                  <SidebarNavGroup title="Resources" />
+                  <SidebarNavGroup title="Resources" onClose={onClose} />
                 </Grid>
                 <Grid item sm={12} md={6} lg={4}>
-                  <SidebarNavGroup title="Gathered" />
+                  <SidebarNavGroup title="Gathered" onClose={onClose} />
                 </Grid>
                 <Grid item sm={12} md={6} lg={4}>
-                  <SidebarNavGroup title="Scatter" />
+                  <SidebarNavGroup title="Scatter" onClose={onClose} />
                 </Grid>
                 <Grid item sm={12} md={6} lg={4}>
-                  <SidebarNavGroup title="Ministries" />
+                  <SidebarNavGroup title="Ministries" onClose={onClose} />
                 </Grid>
               </Grid>
             </Grid>
             <Grid item sm={12} md={4} lg={3}>
-              <SideNavButton title="Plan a Visit" targetUrl="/#lorem-ipsum" />
-              <SideNavButton title="My Westover" targetUrl="/#lorem-ipsum" />
-              <SideNavButton title="Give Online" targetUrl="/#lorem-ipsum" />
+              <SideNavButton
+                title="Plan a Visit"
+                targetUrl="/#lorem-ipsum"
+                onClose={onClose}
+              />
+              <SideNavButton
+                title="My Westover"
+                targetUrl="/#lorem-ipsum"
+                onClose={onClose}
+              />
+              <SideNavButton
+                title="Give Online"
+                targetUrl="/#lorem-ipsum"
+                onClose={onClose}
+              />
               <SideNavButton
                 title="What We Believe"
                 targetUrl="/#lorem-ipsum"
